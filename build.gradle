@@ -1,0 +1,36 @@
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+
+if (project.hasProperty("topobyte")) {
+    apply from: 'file:///' + System.getProperty("user.home") \
+        + '/.gradle/topobyte.gradle'
+}
+
+group = pGroup
+version = pVersion
+
+repositories {
+    maven {
+        url 'http://mvn.topobyte.de'
+    }
+    mavenCentral()
+}
+
+dependencies {
+    compile 'de.topobyte:jsoup-elements:0.0.1'
+    compile 'org.jsoup:jsoup:1.8.3'
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives sourcesJar
+}
