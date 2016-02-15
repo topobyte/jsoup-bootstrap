@@ -18,6 +18,7 @@
 package de.topobyte.jsoup;
 
 import static de.topobyte.jsoup.Bootstrap.button;
+import static de.topobyte.jsoup.HTML.a;
 import static de.topobyte.jsoup.HTML.b;
 import static de.topobyte.jsoup.HTML.div;
 import static de.topobyte.jsoup.HTML.h1;
@@ -31,6 +32,7 @@ import org.apache.commons.io.IOUtils;
 import org.jsoup.nodes.Document;
 
 import de.topobyte.jsoup.components.bootstrap3.Breadcrumb;
+import de.topobyte.jsoup.components.bootstrap3.Menu;
 import de.topobyte.jsoup.nodes.Element;
 
 public class Test
@@ -49,6 +51,22 @@ public class Test
 		ElementUtil.appendFragment(head, header);
 
 		Element body = builder.getBody();
+
+		// Menu
+
+		Menu menu = new Menu();
+		body.ap(menu);
+
+		menu.addBrand(HTML.span().appendText("Awesome"));
+
+		menu.addMain(a("#").appendText("Products"), false);
+		menu.addMain(a("#").appendText("Services"), false);
+		menu.addMain(a("#").appendText("Partners"), false);
+
+		menu.addRight(a("#").appendText("About"), false);
+
+		// Content
+
 		Element c = body.ac(Bootstrap.container());
 
 		Breadcrumb breadcrumb = Bootstrap.breadcrumb();
