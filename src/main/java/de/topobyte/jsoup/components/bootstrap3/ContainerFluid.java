@@ -15,34 +15,16 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jsoup-bootstrap. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jsoup;
+package de.topobyte.jsoup.components.bootstrap3;
 
-import de.topobyte.jsoup.components.bootstrap3.Breadcrumb;
-import de.topobyte.jsoup.components.bootstrap3.Button;
-import de.topobyte.jsoup.components.bootstrap3.Container;
-import de.topobyte.jsoup.components.bootstrap3.ContainerFluid;
+import de.topobyte.jsoup.components.Div;
 
-public class Bootstrap
+public class ContainerFluid extends Div
 {
 
-	public static Container container()
+	public ContainerFluid()
 	{
-		return new Container();
-	}
-
-	public static ContainerFluid containerFluid()
-	{
-		return new ContainerFluid();
-	}
-
-	public static Button button()
-	{
-		return new Button();
-	}
-
-	public static Breadcrumb breadcrumb()
-	{
-		return new Breadcrumb();
+		super("container-fluid");
 	}
 
 }
