@@ -20,14 +20,17 @@ public class Menu extends Element
 
 	public Menu()
 	{
+		this("bs-navbar-collapse");
+	}
+
+	public Menu(String idNavbar)
+	{
 		super("nav");
 		addClass("navbar navbar-default");
 
 		Element container = ac(Bootstrap.container());
 
 		navbarHeader = container.ac(div("navbar-header"));
-
-		String idNavbar = "bs-navbar-collapse";
 
 		// Button
 
