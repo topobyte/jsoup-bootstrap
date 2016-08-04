@@ -17,6 +17,7 @@
 
 package de.topobyte.jsoup;
 
+import de.topobyte.jsoup.components.Div;
 import de.topobyte.jsoup.components.bootstrap3.Breadcrumb;
 import de.topobyte.jsoup.components.bootstrap3.Button;
 import de.topobyte.jsoup.components.bootstrap3.Container;
@@ -43,6 +44,11 @@ public class Bootstrap
 	public static Breadcrumb breadcrumb()
 	{
 		return new Breadcrumb();
+	}
+
+	public static Div row()
+	{
+		return new Div("row");
 	}
 
 }
