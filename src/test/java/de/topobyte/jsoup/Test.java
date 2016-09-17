@@ -31,7 +31,9 @@ import java.io.IOException;
 import org.apache.commons.io.IOUtils;
 import org.jsoup.nodes.Document;
 
+import de.topobyte.jsoup.components.Div;
 import de.topobyte.jsoup.components.bootstrap3.Breadcrumb;
+import de.topobyte.jsoup.components.bootstrap3.Container;
 import de.topobyte.jsoup.components.bootstrap3.Menu;
 import de.topobyte.jsoup.nodes.Element;
 
@@ -67,7 +69,7 @@ public class Test
 
 		// Content
 
-		Element c = body.ac(Bootstrap.container());
+		Container c = body.ac(Bootstrap.container());
 
 		Breadcrumb breadcrumb = Bootstrap.breadcrumb();
 		c.ap(breadcrumb);
@@ -79,7 +81,7 @@ public class Test
 
 		c.ap(h1().inner("The headline"));
 
-		Element div = c.ac(div("foo"));
+		Div div = c.ac(div("foo"));
 
 		Element p = div.ac(p().inner("this is a paragraph in a div. "));
 
