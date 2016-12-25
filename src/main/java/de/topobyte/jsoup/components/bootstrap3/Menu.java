@@ -14,9 +14,9 @@ import de.topobyte.jsoup.nodes.Element;
 public class Menu extends Element
 {
 
-	private Element navbarHeader;
-	private Element navMain;
-	private Element navRight;
+	protected Element navbarHeader;
+	protected Element navMain;
+	protected Element navRight;
 
 	public Menu()
 	{
