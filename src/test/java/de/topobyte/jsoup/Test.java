@@ -18,8 +18,10 @@
 package de.topobyte.jsoup;
 
 import static de.topobyte.jsoup.Bootstrap.button;
+import static de.topobyte.jsoup.Bootstrap.label;
 import static de.topobyte.jsoup.HTML.a;
 import static de.topobyte.jsoup.HTML.b;
+import static de.topobyte.jsoup.HTML.br;
 import static de.topobyte.jsoup.HTML.div;
 import static de.topobyte.jsoup.HTML.h1;
 import static de.topobyte.jsoup.HTML.i;
@@ -27,6 +29,9 @@ import static de.topobyte.jsoup.HTML.p;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.jsoup.nodes.Document;
@@ -34,6 +39,8 @@ import org.jsoup.nodes.Document;
 import de.topobyte.jsoup.components.Div;
 import de.topobyte.jsoup.components.bootstrap3.Breadcrumb;
 import de.topobyte.jsoup.components.bootstrap3.Container;
+import de.topobyte.jsoup.components.bootstrap3.Label;
+import de.topobyte.jsoup.components.bootstrap3.Label.Type;
 import de.topobyte.jsoup.components.bootstrap3.Menu;
 import de.topobyte.jsoup.nodes.Element;
 
@@ -93,6 +100,21 @@ public class Test
 		System.out.println(p);
 
 		div.ap(button().inner("I'm a button"));
+
+		p = div.ac(p().inner("Another paragraph with some labels:"));
+		p.ap(br());
+
+		List<Type> types = Arrays.asList(Label.Type.values());
+		Iterator<Type> iterator = types.iterator();
+		while (iterator.hasNext()) {
+			Type type = iterator.next();
+			Label label = label(type);
+			p.ap(label.inner("I'm a label of type "
+					+ type.toString().toLowerCase()));
+			if (iterator.hasNext()) {
+				p.appendText(" ");
+			}
+		}
 
 		Document doc = builder.getDocument();
 		System.out.println(doc);

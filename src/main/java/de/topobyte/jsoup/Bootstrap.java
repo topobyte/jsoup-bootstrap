@@ -22,6 +22,7 @@ import de.topobyte.jsoup.components.bootstrap3.Breadcrumb;
 import de.topobyte.jsoup.components.bootstrap3.Button;
 import de.topobyte.jsoup.components.bootstrap3.Container;
 import de.topobyte.jsoup.components.bootstrap3.ContainerFluid;
+import de.topobyte.jsoup.components.bootstrap3.Label;
 
 public class Bootstrap
 {
@@ -49,6 +50,11 @@ public class Bootstrap
 	public static Div row()
 	{
 		return new Div("row");
+	}
+
+	public static Label label(Label.Type type)
+	{
+		return new Label(type);
 	}
 
 }
