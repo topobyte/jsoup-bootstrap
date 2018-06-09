@@ -73,12 +73,12 @@ public class BootstrapForms
 		Label eLabel = group.ac(HTML.label());
 		eLabel.text(label);
 
-		Select select = HTML.select();
+		Select select = group.ac(HTML.select());
 		select.attr("name", name);
 		select.addClass("form-control");
 
 		for (int i = 0; i < names.size(); i++) {
-			Option option = HTML.option();
+			Option option = select.ac(HTML.option());
 			option.setValue(values.get(i));
 			option.text(names.get(i));
 		}
