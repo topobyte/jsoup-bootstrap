@@ -23,6 +23,7 @@ repositories {
 
 dependencies {
     compile 'de.topobyte:jsoup-elements:0.1.0'
+    compile 'de.topobyte:jsoup-utils:0.1.0'
     compile 'org.jsoup:jsoup:1.8.3'
 
     testCompile 'commons-io:commons-io:2.4'
