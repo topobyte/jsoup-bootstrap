@@ -42,6 +42,7 @@ import de.topobyte.jsoup.components.bootstrap3.Container;
 import de.topobyte.jsoup.components.bootstrap3.Label;
 import de.topobyte.jsoup.components.bootstrap3.Label.Type;
 import de.topobyte.jsoup.components.bootstrap3.Menu;
+import de.topobyte.jsoup.components.bootstrap3.NavTabs;
 import de.topobyte.jsoup.nodes.Element;
 
 public class Test
@@ -114,6 +115,15 @@ public class Test
 			if (iterator.hasNext()) {
 				p.appendText(" ");
 			}
+		}
+
+		p = div.ac(p().inner("Nav tabs:"));
+		NavTabs navTabs = new NavTabs();
+		div.ac(navTabs.getElement());
+
+		for (int i = 1; i <= 5; i++) {
+			Element link = HTML.a("#").appendText("item " + i);
+			navTabs.addItem(link, i == 2);
 		}
 
 		Document doc = builder.getDocument();
