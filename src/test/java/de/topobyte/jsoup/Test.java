@@ -38,11 +38,13 @@ import org.jsoup.nodes.Document;
 
 import de.topobyte.jsoup.components.Div;
 import de.topobyte.jsoup.components.bootstrap3.Breadcrumb;
+import de.topobyte.jsoup.components.bootstrap3.CollapsiblePanel;
 import de.topobyte.jsoup.components.bootstrap3.Container;
 import de.topobyte.jsoup.components.bootstrap3.Label;
 import de.topobyte.jsoup.components.bootstrap3.Label.Type;
 import de.topobyte.jsoup.components.bootstrap3.Menu;
 import de.topobyte.jsoup.components.bootstrap3.NavTabs;
+import de.topobyte.jsoup.components.bootstrap3.Panel;
 import de.topobyte.jsoup.nodes.Element;
 
 public class Test
@@ -126,10 +128,36 @@ public class Test
 			navTabs.addItem(link, i == 2);
 		}
 
+		panels(div);
+
 		Document doc = builder.getDocument();
 		System.out.println(doc);
 
 		builder.write(new File("/tmp/jsoup-bootstrap.html"));
+	}
+
+	private static void panels(Div div)
+	{
+		div.ac(p().inner("Panels:"));
+
+		Panel panel = div.ac(new Panel(false));
+		panel.getPanelHead().appendText("A simple panel");
+		panel.getPanelBody().appendText("Some content");
+
+		panel = div.ac(new Panel(true));
+		panel.getPanelHead().appendText("A simple panel");
+		panel.getPanelBody().appendText("Some content");
+		panel.getPanelFooter().appendText("A footer");
+
+		CollapsiblePanel cpanel = div
+				.ac(new CollapsiblePanel(false, true, false));
+		cpanel.getPanelHead().appendText("A collapsible panel");
+		cpanel.getPanelBody().appendText("Some content");
+
+		cpanel = div.ac(new CollapsiblePanel(true, true, true));
+		cpanel.getPanelHead().appendText("A collapsible panel");
+		cpanel.getPanelBody().appendText("Some content");
+		cpanel.getPanelFooter().appendText("A footer");
 	}
 
 }
