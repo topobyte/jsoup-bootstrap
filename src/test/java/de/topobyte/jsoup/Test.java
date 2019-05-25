@@ -66,28 +66,13 @@ public class Test
 
 		// Menu
 
-		Menu menu = new Menu();
-		body.ap(menu);
-
-		menu.addBrand(HTML.span().appendText("Awesome"));
-
-		menu.addMain(a("#").appendText("Products"), false);
-		menu.addMain(a("#").appendText("Services"), false);
-		menu.addMain(a("#").appendText("Partners"), false);
-
-		menu.addRight(a("#").appendText("About"), false);
+		menu(body);
 
 		// Content
 
 		Container c = body.ac(Bootstrap.container());
 
-		Breadcrumb breadcrumb = Bootstrap.breadcrumb();
-		c.ap(breadcrumb);
-
-		breadcrumb.addTextItem("foo");
-		breadcrumb.addTextItem("bar");
-		breadcrumb.addTextItem("and");
-		breadcrumb.addTextItem("so on");
+		breadcrumbs(c);
 
 		c.ap(h1().inner("The headline"));
 
@@ -104,7 +89,46 @@ public class Test
 
 		div.ap(button().inner("I'm a button"));
 
-		p = div.ac(p().inner("Another paragraph with some labels:"));
+		labels(div);
+
+		navTabs(div);
+
+		panels(div);
+
+		Document doc = builder.getDocument();
+		System.out.println(doc);
+
+		builder.write(new File("/tmp/jsoup-bootstrap.html"));
+	}
+
+	private static void menu(Element body)
+	{
+		Menu menu = new Menu();
+		body.ap(menu);
+
+		menu.addBrand(HTML.span().appendText("Awesome"));
+
+		menu.addMain(a("#").appendText("Products"), false);
+		menu.addMain(a("#").appendText("Services"), false);
+		menu.addMain(a("#").appendText("Partners"), false);
+
+		menu.addRight(a("#").appendText("About"), false);
+	}
+
+	private static void breadcrumbs(Container c)
+	{
+		Breadcrumb breadcrumb = Bootstrap.breadcrumb();
+		c.ap(breadcrumb);
+
+		breadcrumb.addTextItem("foo");
+		breadcrumb.addTextItem("bar");
+		breadcrumb.addTextItem("and");
+		breadcrumb.addTextItem("so on");
+	}
+
+	private static void labels(Div div)
+	{
+		Element p = div.ac(p().inner("Another paragraph with some labels:"));
 		p.ap(br());
 
 		List<Type> types = Arrays.asList(Label.Type.values());
@@ -118,8 +142,11 @@ public class Test
 				p.appendText(" ");
 			}
 		}
+	}
 
-		p = div.ac(p().inner("Nav tabs:"));
+	private static void navTabs(Div div)
+	{
+		div.ac(p().inner("Nav tabs:"));
 		NavTabs navTabs = new NavTabs();
 		div.ac(navTabs.getElement());
 
@@ -127,13 +154,6 @@ public class Test
 			Element link = HTML.a("#").appendText("item " + i);
 			navTabs.addItem(link, i == 2);
 		}
-
-		panels(div);
-
-		Document doc = builder.getDocument();
-		System.out.println(doc);
-
-		builder.write(new File("/tmp/jsoup-bootstrap.html"));
 	}
 
 	private static void panels(Div div)
