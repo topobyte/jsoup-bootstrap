@@ -53,9 +53,9 @@ public class Test
 
 		Element head = builder.getHead();
 
-		String header = IOUtils.toString(Thread.currentThread()
-				.getContextClassLoader()
-				.getResourceAsStream("bootstrap.headers.html"));
+		String header = IOUtils
+				.toString(Thread.currentThread().getContextClassLoader()
+						.getResourceAsStream("bootstrap.headers.html"));
 		System.out.println(header);
 		ElementUtil.appendFragment(head, header);
 
@@ -109,8 +109,8 @@ public class Test
 		while (iterator.hasNext()) {
 			Type type = iterator.next();
 			Label label = label(type);
-			p.ap(label.inner("I'm a label of type "
-					+ type.toString().toLowerCase()));
+			p.ap(label.inner(
+					"I'm a label of type " + type.toString().toLowerCase()));
 			if (iterator.hasNext()) {
 				p.appendText(" ");
 			}
