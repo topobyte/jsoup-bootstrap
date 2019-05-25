@@ -51,21 +51,21 @@ public class Menu extends Element
 
 		// Button
 
-		Element button = navbarHeader.ac(ElementBuilder.create("button",
-				"type", "button", "class", "navbar-toggle collapsed",
-				"data-toggle", "collapse", "data-target", "#" + idNavbar,
-				"aria-expanded", "false", "aria-controls", "navbar"));
+		Element button = navbarHeader.ac(ElementBuilder.create("button", "type",
+				"button", "class", "navbar-toggle collapsed", "data-toggle",
+				"collapse", "data-target", "#" + idNavbar, "aria-expanded",
+				"false", "aria-controls", "navbar"));
 
-		button.appendChild(span().addClass("sr-only").appendText(
-				"Toggle navigation"));
+		button.appendChild(
+				span().addClass("sr-only").appendText("Toggle navigation"));
 		button.appendChild(span().addClass("icon-bar"));
 		button.appendChild(span().addClass("icon-bar"));
 		button.appendChild(span().addClass("icon-bar"));
 
 		// Entries
 
-		Element entries = container.ac(div().addClass(
-				"collapse navbar-collapse").attr("id", idNavbar));
+		Element entries = container.ac(div()
+				.addClass("collapse navbar-collapse").attr("id", idNavbar));
 
 		navMain = entries.ac(ul().addClass("nav navbar-nav"));
 		navRight = entries.ac(ul().addClass("nav navbar-nav navbar-right"));
