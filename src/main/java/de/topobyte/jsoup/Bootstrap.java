@@ -18,6 +18,7 @@
 package de.topobyte.jsoup;
 
 import de.topobyte.jsoup.components.Div;
+import de.topobyte.jsoup.components.bootstrap3.Alert;
 import de.topobyte.jsoup.components.bootstrap3.Breadcrumb;
 import de.topobyte.jsoup.components.bootstrap3.Button;
 import de.topobyte.jsoup.components.bootstrap3.Container;
@@ -55,6 +56,11 @@ public class Bootstrap
 	public static Label label(Label.Type type)
 	{
 		return new Label(type);
+	}
+
+	public static Alert alert(Alert.Type type)
+	{
+		return new Alert(type);
 	}
 
 }

@@ -17,6 +17,7 @@
 
 package de.topobyte.jsoup;
 
+import static de.topobyte.jsoup.Bootstrap.alert;
 import static de.topobyte.jsoup.Bootstrap.button;
 import static de.topobyte.jsoup.Bootstrap.label;
 import static de.topobyte.jsoup.HTML.a;
@@ -37,11 +38,11 @@ import org.apache.commons.io.IOUtils;
 import org.jsoup.nodes.Document;
 
 import de.topobyte.jsoup.components.Div;
+import de.topobyte.jsoup.components.bootstrap3.Alert;
 import de.topobyte.jsoup.components.bootstrap3.Breadcrumb;
 import de.topobyte.jsoup.components.bootstrap3.CollapsiblePanel;
 import de.topobyte.jsoup.components.bootstrap3.Container;
 import de.topobyte.jsoup.components.bootstrap3.Label;
-import de.topobyte.jsoup.components.bootstrap3.Label.Type;
 import de.topobyte.jsoup.components.bootstrap3.Menu;
 import de.topobyte.jsoup.components.bootstrap3.NavTabs;
 import de.topobyte.jsoup.components.bootstrap3.Panel;
@@ -95,6 +96,8 @@ public class Test
 
 		panels(div);
 
+		alerts(div);
+
 		Document doc = builder.getDocument();
 		System.out.println(doc);
 
@@ -131,10 +134,10 @@ public class Test
 		Element p = div.ac(p().inner("Another paragraph with some labels:"));
 		p.ap(br());
 
-		List<Type> types = Arrays.asList(Label.Type.values());
-		Iterator<Type> iterator = types.iterator();
+		List<Label.Type> types = Arrays.asList(Label.Type.values());
+		Iterator<Label.Type> iterator = types.iterator();
 		while (iterator.hasNext()) {
-			Type type = iterator.next();
+			Label.Type type = iterator.next();
 			Label label = label(type);
 			p.ap(label.inner(
 					"I'm a label of type " + type.toString().toLowerCase()));
@@ -178,6 +181,20 @@ public class Test
 		cpanel.getPanelHead().appendText("A collapsible panel");
 		cpanel.getPanelBody().appendText("Some content");
 		cpanel.getPanelFooter().appendText("A footer");
+	}
+
+	private static void alerts(Div div)
+	{
+		div.ac(p().inner("Alerts:"));
+
+		List<Alert.Type> types = Arrays.asList(Alert.Type.values());
+		Iterator<Alert.Type> iterator = types.iterator();
+		while (iterator.hasNext()) {
+			Alert.Type type = iterator.next();
+			Alert alert = div.ac(alert(type));
+			alert.appendText(
+					"I'm an alert of type " + type.toString().toLowerCase());
+		}
 	}
 
 }
