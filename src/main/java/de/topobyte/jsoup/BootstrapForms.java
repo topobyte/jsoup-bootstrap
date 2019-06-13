@@ -68,6 +68,12 @@ public class BootstrapForms
 	public static Element addSelect(Form form, String name, String label,
 			List<String> names, List<String> values)
 	{
+		return addSelect(form, name, label, names, values, -1);
+	}
+
+	public static Element addSelect(Form form, String name, String label,
+			List<String> names, List<String> values, int selectedIndex)
+	{
 		Div group = form.ac(HTML.div("form-group"));
 
 		Label eLabel = group.ac(HTML.label());
@@ -81,6 +87,9 @@ public class BootstrapForms
 			Option option = select.ac(HTML.option());
 			option.setValue(values.get(i));
 			option.text(names.get(i));
+			if (i == selectedIndex) {
+				option.setSelected(true);
+			}
 		}
 
 		return select;
