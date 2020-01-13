@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jsoup-bootstrap. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jsoup.components.bootstrap3;
+package de.topobyte.jsoup.bootstrap3.components;
 
 import static de.topobyte.jsoup.HTML.div;
 import static de.topobyte.jsoup.HTML.li;
@@ -24,8 +24,8 @@ import static de.topobyte.jsoup.HTML.ul;
 
 import org.jsoup.nodes.Node;
 
-import de.topobyte.jsoup.Bootstrap;
 import de.topobyte.jsoup.ElementBuilder;
+import de.topobyte.jsoup.bootstrap3.Bootstrap;
 import de.topobyte.jsoup.nodes.Element;
 
 public class Menu extends Element

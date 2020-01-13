@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jsoup-bootstrap. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jsoup.forms;
+package de.topobyte.jsoup.bootstrap3.forms;
 
 import de.topobyte.jsoup.components.Div;
 import de.topobyte.jsoup.components.Input;

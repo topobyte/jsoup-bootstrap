@@ -15,42 +15,52 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jsoup-bootstrap. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jsoup.components.bootstrap3;
+package de.topobyte.jsoup.bootstrap3.components;
 
-import de.topobyte.jsoup.HTML;
+import java.util.EnumMap;
+import java.util.Map;
+
+import org.jsoup.nodes.Node;
+
 import de.topobyte.jsoup.components.Div;
 
-public class Panel extends Div
+public class Alert extends Div
 {
 
-	private Div panelHead;
-	private Div panelBody;
-	private Div panelFooter;
+	public static enum Type {
+		SUCCESS,
+		INFO,
+		WARNING,
+		DANGER
+	}
 
-	public Panel(boolean withFooter)
-	{
-		super("panel panel-default");
-
-		panelHead = ac(HTML.div("panel-heading"));
-		panelBody = ac(HTML.div("panel-body"));
-		if (withFooter) {
-			panelFooter = ac(HTML.div("panel-footer"));
+	private static Map<Type, String> map = new EnumMap<>(Type.class);
+	static {
+		for (Type type : Type.values()) {
+			map.put(type, type.name().toLowerCase());
 		}
 	}
 
-	public Div getPanelHead()
+	public Alert(Type type)
 	{
-		return panelHead;
+		if (type == null) {
+			throw new IllegalArgumentException("null is not allowed");
+		}
+		String typename = map.get(type);
+		attr("class", "alert alert-" + typename);
+		attr("role", "alert");
 	}
 
-	public Div getPanelBody()
+	public Alert(Type type, String text)
 	{
-		return panelBody;
+		this(type);
+		appendText(text);
 	}
 
-	public Div getPanelFooter()
+	public Alert(Type type, Node child)
 	{
-		return panelFooter;
+		this(type);
+		appendChild(child);
 	}
 
 }

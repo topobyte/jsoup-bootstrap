@@ -1,4 +1,4 @@
-// Copyright 2019 Sebastian Kuerten
+// Copyright 2020 Sebastian Kuerten
 //
 // This file is part of jsoup-bootstrap.
 //
@@ -15,52 +15,31 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jsoup-bootstrap. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jsoup.components.bootstrap3;
+package de.topobyte.jsoup.bootstrap3.forms;
 
-import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
-import org.jsoup.nodes.Node;
-
 import de.topobyte.jsoup.components.Div;
+import de.topobyte.jsoup.components.Input;
+import lombok.Getter;
 
-public class Alert extends Div
+public class RadioGroup
 {
 
-	public static enum Type {
-		SUCCESS,
-		INFO,
-		WARNING,
-		DANGER
-	}
+	@Getter
+	private Div group;
+	@Getter
+	private List<Input> inputs;
+	@Getter
+	private Map<String, Input> valueToInput;
 
-	private static Map<Type, String> map = new EnumMap<>(Type.class);
-	static {
-		for (Type type : Type.values()) {
-			map.put(type, type.name().toLowerCase());
-		}
-	}
-
-	public Alert(Type type)
+	public RadioGroup(Div group, List<Input> inputs,
+			Map<String, Input> valueToInput)
 	{
-		if (type == null) {
-			throw new IllegalArgumentException("null is not allowed");
-		}
-		String typename = map.get(type);
-		attr("class", "alert alert-" + typename);
-		attr("role", "alert");
-	}
-
-	public Alert(Type type, String text)
-	{
-		this(type);
-		appendText(text);
-	}
-
-	public Alert(Type type, Node child)
-	{
-		this(type);
-		appendChild(child);
+		this.group = group;
+		this.inputs = inputs;
+		this.valueToInput = valueToInput;
 	}
 
 }

@@ -1,4 +1,4 @@
-// Copyright 2020 Sebastian Kuerten
+// Copyright 2016 Sebastian Kuerten
 //
 // This file is part of jsoup-bootstrap.
 //
@@ -15,31 +15,16 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jsoup-bootstrap. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jsoup.forms;
-
-import java.util.List;
-import java.util.Map;
+package de.topobyte.jsoup.bootstrap3.components;
 
 import de.topobyte.jsoup.components.Div;
-import de.topobyte.jsoup.components.Input;
-import lombok.Getter;
 
-public class RadioGroup
+public class Container extends Div
 {
 
-	@Getter
-	private Div group;
-	@Getter
-	private List<Input> inputs;
-	@Getter
-	private Map<String, Input> valueToInput;
-
-	public RadioGroup(Div group, List<Input> inputs,
-			Map<String, Input> valueToInput)
+	public Container()
 	{
-		this.group = group;
-		this.inputs = inputs;
-		this.valueToInput = valueToInput;
+		super("container");
 	}
 
 }

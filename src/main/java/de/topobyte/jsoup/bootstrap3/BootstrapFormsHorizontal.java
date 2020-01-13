@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jsoup-bootstrap. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jsoup;
+package de.topobyte.jsoup.bootstrap3;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,15 +23,15 @@ import java.util.List;
 import java.util.Map;
 
 import de.topobyte.jsoup.HTML;
+import de.topobyte.jsoup.bootstrap3.forms.InputGroup;
+import de.topobyte.jsoup.bootstrap3.forms.RadioGroup;
+import de.topobyte.jsoup.bootstrap3.forms.SelectGroup;
 import de.topobyte.jsoup.components.Button;
 import de.topobyte.jsoup.components.Div;
 import de.topobyte.jsoup.components.Input;
 import de.topobyte.jsoup.components.Label;
 import de.topobyte.jsoup.components.Option;
 import de.topobyte.jsoup.components.Select;
-import de.topobyte.jsoup.forms.InputGroup;
-import de.topobyte.jsoup.forms.RadioGroup;
-import de.topobyte.jsoup.forms.SelectGroup;
 import de.topobyte.jsoup.nodes.Element;
 
 public class BootstrapFormsHorizontal

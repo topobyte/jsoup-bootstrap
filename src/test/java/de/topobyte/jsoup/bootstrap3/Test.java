@@ -15,11 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jsoup-bootstrap. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jsoup;
+package de.topobyte.jsoup.bootstrap3;
 
-import static de.topobyte.jsoup.Bootstrap.alert;
-import static de.topobyte.jsoup.Bootstrap.button;
-import static de.topobyte.jsoup.Bootstrap.label;
 import static de.topobyte.jsoup.HTML.a;
 import static de.topobyte.jsoup.HTML.b;
 import static de.topobyte.jsoup.HTML.br;
@@ -27,6 +24,9 @@ import static de.topobyte.jsoup.HTML.div;
 import static de.topobyte.jsoup.HTML.h1;
 import static de.topobyte.jsoup.HTML.i;
 import static de.topobyte.jsoup.HTML.p;
+import static de.topobyte.jsoup.bootstrap3.Bootstrap.alert;
+import static de.topobyte.jsoup.bootstrap3.Bootstrap.button;
+import static de.topobyte.jsoup.bootstrap3.Bootstrap.label;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,15 +37,18 @@ import java.util.List;
 import org.apache.commons.io.IOUtils;
 import org.jsoup.nodes.Document;
 
+import de.topobyte.jsoup.ElementUtil;
+import de.topobyte.jsoup.HTML;
+import de.topobyte.jsoup.HtmlBuilder;
+import de.topobyte.jsoup.bootstrap3.components.Alert;
+import de.topobyte.jsoup.bootstrap3.components.Breadcrumb;
+import de.topobyte.jsoup.bootstrap3.components.CollapsiblePanel;
+import de.topobyte.jsoup.bootstrap3.components.Container;
+import de.topobyte.jsoup.bootstrap3.components.Label;
+import de.topobyte.jsoup.bootstrap3.components.Menu;
+import de.topobyte.jsoup.bootstrap3.components.NavTabs;
+import de.topobyte.jsoup.bootstrap3.components.Panel;
 import de.topobyte.jsoup.components.Div;
-import de.topobyte.jsoup.components.bootstrap3.Alert;
-import de.topobyte.jsoup.components.bootstrap3.Breadcrumb;
-import de.topobyte.jsoup.components.bootstrap3.CollapsiblePanel;
-import de.topobyte.jsoup.components.bootstrap3.Container;
-import de.topobyte.jsoup.components.bootstrap3.Label;
-import de.topobyte.jsoup.components.bootstrap3.Menu;
-import de.topobyte.jsoup.components.bootstrap3.NavTabs;
-import de.topobyte.jsoup.components.bootstrap3.Panel;
 import de.topobyte.jsoup.nodes.Element;
 
 public class Test

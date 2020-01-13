@@ -1,4 +1,4 @@
-// Copyright 2020 Sebastian Kuerten
+// Copyright 2019 Sebastian Kuerten
 //
 // This file is part of jsoup-bootstrap.
 //
@@ -15,31 +15,42 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jsoup-bootstrap. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jsoup.forms;
+package de.topobyte.jsoup.bootstrap3.components;
 
-import java.util.List;
-import java.util.Map;
-
+import de.topobyte.jsoup.HTML;
 import de.topobyte.jsoup.components.Div;
-import de.topobyte.jsoup.components.Option;
-import lombok.Getter;
 
-public class SelectGroup
+public class Panel extends Div
 {
 
-	@Getter
-	private Div group;
-	@Getter
-	private List<Option> options;
-	@Getter
-	private Map<String, Option> valueToOption;
+	private Div panelHead;
+	private Div panelBody;
+	private Div panelFooter;
 
-	public SelectGroup(Div group, List<Option> options,
-			Map<String, Option> valueToOption)
+	public Panel(boolean withFooter)
 	{
-		this.group = group;
-		this.options = options;
-		this.valueToOption = valueToOption;
+		super("panel panel-default");
+
+		panelHead = ac(HTML.div("panel-heading"));
+		panelBody = ac(HTML.div("panel-body"));
+		if (withFooter) {
+			panelFooter = ac(HTML.div("panel-footer"));
+		}
+	}
+
+	public Div getPanelHead()
+	{
+		return panelHead;
+	}
+
+	public Div getPanelBody()
+	{
+		return panelBody;
+	}
+
+	public Div getPanelFooter()
+	{
+		return panelFooter;
 	}
 
 }

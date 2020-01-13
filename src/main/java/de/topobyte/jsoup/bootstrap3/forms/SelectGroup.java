@@ -1,4 +1,4 @@
-// Copyright 2019 Sebastian Kuerten
+// Copyright 2020 Sebastian Kuerten
 //
 // This file is part of jsoup-bootstrap.
 //
@@ -15,42 +15,31 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jsoup-bootstrap. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jsoup.components.bootstrap3;
+package de.topobyte.jsoup.bootstrap3.forms;
 
-import org.jsoup.nodes.Node;
+import java.util.List;
+import java.util.Map;
 
-import de.topobyte.jsoup.HTML;
-import de.topobyte.jsoup.components.ListItem;
-import de.topobyte.jsoup.components.UnorderedList;
+import de.topobyte.jsoup.components.Div;
+import de.topobyte.jsoup.components.Option;
+import lombok.Getter;
 
-public class NavTabs
+public class SelectGroup
 {
 
-	private UnorderedList list = HTML.ul();
+	@Getter
+	private Div group;
+	@Getter
+	private List<Option> options;
+	@Getter
+	private Map<String, Option> valueToOption;
 
-	public NavTabs()
+	public SelectGroup(Div group, List<Option> options,
+			Map<String, Option> valueToOption)
 	{
-		list.addClass("nav nav-tabs");
-	}
-
-	public UnorderedList getElement()
-	{
-		return list;
-	}
-
-	public ListItem addItem(Node e)
-	{
-		return addItem(e, false);
-	}
-
-	public ListItem addItem(Node e, boolean active)
-	{
-		ListItem item = list.addItem(e);
-		item.attr("role", "presentation");
-		if (active) {
-			item.attr("class", "active");
-		}
-		return item;
+		this.group = group;
+		this.options = options;
+		this.valueToOption = valueToOption;
 	}
 
 }

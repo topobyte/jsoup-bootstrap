@@ -1,4 +1,4 @@
-// Copyright 2016 Sebastian Kuerten
+// Copyright 2019 Sebastian Kuerten
 //
 // This file is part of jsoup-bootstrap.
 //
@@ -15,44 +15,42 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jsoup-bootstrap. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jsoup.components.bootstrap3;
+package de.topobyte.jsoup.bootstrap3.components;
 
 import org.jsoup.nodes.Node;
 
-import de.topobyte.jsoup.nodes.Element;
+import de.topobyte.jsoup.HTML;
+import de.topobyte.jsoup.components.ListItem;
+import de.topobyte.jsoup.components.UnorderedList;
 
-public class Button extends Element
+public class NavTabs
 {
 
-	public Button()
+	private UnorderedList list = HTML.ul();
+
+	public NavTabs()
 	{
-		super("a");
-		attr("class", "btn btn-primary");
-		attr("role", "button");
+		list.addClass("nav nav-tabs");
 	}
 
-	public Button(String text)
+	public UnorderedList getElement()
 	{
-		this();
-		appendText(text);
+		return list;
 	}
 
-	public Button(Node child)
+	public ListItem addItem(Node e)
 	{
-		this();
-		appendChild(child);
+		return addItem(e, false);
 	}
 
-	public Button(String text, String href)
+	public ListItem addItem(Node e, boolean active)
 	{
-		this(text);
-		attr("href", href);
-	}
-
-	public Button(Node child, String href)
-	{
-		this(child);
-		attr("href", href);
+		ListItem item = list.addItem(e);
+		item.attr("role", "presentation");
+		if (active) {
+			item.attr("class", "active");
+		}
+		return item;
 	}
 
 }

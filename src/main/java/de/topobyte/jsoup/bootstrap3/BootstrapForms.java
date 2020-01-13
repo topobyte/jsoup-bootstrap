@@ -15,10 +15,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jsoup-bootstrap. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jsoup;
+package de.topobyte.jsoup.bootstrap3;
 
 import java.util.List;
 
+import de.topobyte.jsoup.HTML;
 import de.topobyte.jsoup.components.Button;
 import de.topobyte.jsoup.components.Div;
 import de.topobyte.jsoup.components.Form;
