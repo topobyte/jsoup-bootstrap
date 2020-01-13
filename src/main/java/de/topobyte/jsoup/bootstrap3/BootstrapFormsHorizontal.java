@@ -150,6 +150,9 @@ public class BootstrapFormsHorizontal
 			input.attr("name", name);
 			input.attr("id", String.format("%s%d", name, i + 1));
 			input.attr("value", values.get(i));
+			if (i == selectedIndex) {
+				input.setChecked(true);
+			}
 			if (onChange != null) {
 				input.attr("onchange",
 						String.format("%s(this.value)", onChange));
