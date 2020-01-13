@@ -1,3 +1,20 @@
+buildscript {
+    repositories {
+        maven { url 'https://plugins.gradle.org/m2/' }
+    }
+    dependencies {
+        classpath 'com.craigburke.gradle:client-dependencies:1.4.0'
+    }
+}
+
+plugins {
+    id 'io.franzbecker.gradle-lombok' version '1.14'
+}
+
+wrapper {
+    gradleVersion = '5.2.1'
+}
+
 wrapper {
     gradleVersion = '4.9'
 }
@@ -5,6 +22,12 @@ wrapper {
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
+apply plugin: 'io.franzbecker.gradle-lombok'
+
+lombok {
+    version = '1.18.2'
+    sha256 = ""
+}
 
 if (project.hasProperty("topobyte")) {
     apply from: 'file:///' + System.getProperty("user.home") \
