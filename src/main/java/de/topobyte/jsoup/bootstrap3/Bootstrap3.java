@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jsoup-bootstrap. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jsoup.bootstrap;
+package de.topobyte.jsoup.bootstrap3;
 
 import de.topobyte.jsoup.ElementUtil;
 import de.topobyte.jsoup.nodes.Element;
