@@ -17,9 +17,14 @@
 
 package de.topobyte.jsoup.bootstrap3;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.topobyte.jsoup.HTML;
+import de.topobyte.jsoup.bootstrap3.forms.InputGroup;
+import de.topobyte.jsoup.bootstrap3.forms.SelectGroup;
 import de.topobyte.jsoup.components.Button;
 import de.topobyte.jsoup.components.Div;
 import de.topobyte.jsoup.components.Form;
@@ -27,12 +32,11 @@ import de.topobyte.jsoup.components.Input;
 import de.topobyte.jsoup.components.Label;
 import de.topobyte.jsoup.components.Option;
 import de.topobyte.jsoup.components.Select;
-import de.topobyte.jsoup.nodes.Element;
 
 public class BootstrapForms
 {
 
-	public static Input addInput(Form form, String name)
+	public static InputGroup addInput(Form form, String name)
 	{
 		Div group = form.ac(HTML.div("form-group"));
 
@@ -40,10 +44,10 @@ public class BootstrapForms
 		input.setName(name);
 		input.addClass("form-control");
 
-		return input;
+		return new InputGroup(group, null, null, input);
 	}
 
-	public static Input addInput(Form form, String name, String label)
+	public static InputGroup addInput(Form form, String name, String label)
 	{
 		Div group = form.ac(HTML.div("form-group"));
 
@@ -54,7 +58,7 @@ public class BootstrapForms
 		input.setName(name);
 		input.addClass("form-control");
 
-		return input;
+		return new InputGroup(group, eLabel, null, input);
 	}
 
 	public static void addSubmit(Form form, String buttonText)
@@ -66,13 +70,13 @@ public class BootstrapForms
 		button.appendText(buttonText);
 	}
 
-	public static Element addSelect(Form form, String name, String label,
+	public static SelectGroup addSelect(Form form, String name, String label,
 			List<String> names, List<String> values)
 	{
 		return addSelect(form, name, label, names, values, -1);
 	}
 
-	public static Element addSelect(Form form, String name, String label,
+	public static SelectGroup addSelect(Form form, String name, String label,
 			List<String> names, List<String> values, int selectedIndex)
 	{
 		Div group = form.ac(HTML.div("form-group"));
@@ -84,6 +88,8 @@ public class BootstrapForms
 		select.attr("name", name);
 		select.addClass("form-control");
 
+		List<Option> options = new ArrayList<>();
+		Map<String, Option> map = new HashMap<>();
 		for (int i = 0; i < names.size(); i++) {
 			Option option = select.ac(HTML.option());
 			option.setValue(values.get(i));
@@ -91,9 +97,12 @@ public class BootstrapForms
 			if (i == selectedIndex) {
 				option.setSelected(true);
 			}
+
+			options.add(option);
+			map.put(values.get(i), option);
 		}
 
-		return select;
+		return new SelectGroup(group, options, map);
 	}
 
 }
