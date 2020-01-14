@@ -102,7 +102,7 @@ public class BootstrapForms
 			map.put(values.get(i), option);
 		}
 
-		return new SelectGroup(group, options, map);
+		return new SelectGroup(group, eLabel, null, options, map);
 	}
 
 }

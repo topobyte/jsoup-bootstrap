@@ -22,6 +22,7 @@ import java.util.Map;
 
 import de.topobyte.jsoup.components.Div;
 import de.topobyte.jsoup.components.Input;
+import de.topobyte.jsoup.components.Label;
 import lombok.Getter;
 
 public class RadioGroup
@@ -30,11 +31,15 @@ public class RadioGroup
 	@Getter
 	private Div group;
 	@Getter
+	private Label label;
+	@Getter
+	private Div divInputs;
+	@Getter
 	private List<Input> inputs;
 	@Getter
 	private Map<String, Input> valueToInput;
 
-	public RadioGroup(Div group, List<Input> inputs,
+	public RadioGroup(Div group, Label label, Div divInputs, List<Input> inputs,
 			Map<String, Input> valueToInput)
 	{
 		this.group = group;
