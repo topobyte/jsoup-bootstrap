@@ -22,6 +22,7 @@ import static de.topobyte.jsoup.HTML.h1;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 import org.jsoup.nodes.Document;
 
@@ -74,6 +75,10 @@ public class FormsGenerator extends BaseGenerator
 				"Password");
 		inputPassword.getInput().setType(Type.PASSWORD);
 
+		BootstrapForms.addSelect(form, "pet", "Preferred Pet",
+				Arrays.asList("Cat", "Dog", "Bird"),
+				Arrays.asList("cat", "dog", "bird"));
+
 		BootstrapForms.addSubmit(form, "Continue");
 	}
 
@@ -90,6 +95,14 @@ public class FormsGenerator extends BaseGenerator
 		InputGroup inputPassword = BootstrapFormsHorizontal.addInput(form,
 				"password", "Password");
 		inputPassword.getInput().setType(Type.PASSWORD);
+
+		BootstrapFormsHorizontal.addSelect(form, "pet", "Preferred Pet",
+				Arrays.asList("Cat", "Dog", "Bird"),
+				Arrays.asList("cat", "dog", "bird"));
+
+		BootstrapFormsHorizontal.addRadio(form, "dring", "Preferred Drink",
+				Arrays.asList("Coke", "Water", "Beer"),
+				Arrays.asList("coke", "water", "beer"));
 
 		BootstrapFormsHorizontal.addSubmit(form, "Continue");
 	}
