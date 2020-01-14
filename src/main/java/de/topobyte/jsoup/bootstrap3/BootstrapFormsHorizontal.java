@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 import de.topobyte.jsoup.HTML;
+import de.topobyte.jsoup.bootstrap3.forms.ButtonGroup;
 import de.topobyte.jsoup.bootstrap3.forms.InputGroup;
 import de.topobyte.jsoup.bootstrap3.forms.RadioGroup;
 import de.topobyte.jsoup.bootstrap3.forms.SelectGroup;
@@ -65,7 +66,7 @@ public class BootstrapFormsHorizontal
 		return new InputGroup(group, eLabel, div, input);
 	}
 
-	public static void addSubmit(Element form, String buttonText)
+	public static ButtonGroup addSubmit(Element form, String buttonText)
 	{
 		Div group = form.ac(HTML.div("form-group"));
 		Div div = group.ac(HTML.div("col-sm-offset-2 col-sm-10"));
@@ -75,6 +76,8 @@ public class BootstrapFormsHorizontal
 		button.addClass("btn");
 		button.addClass("btn-default");
 		button.appendText(buttonText);
+
+		return new ButtonGroup(group, null, button);
 	}
 
 	public static SelectGroup addSelect(Element form, String name, String label,

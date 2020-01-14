@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 import de.topobyte.jsoup.HTML;
+import de.topobyte.jsoup.bootstrap3.forms.ButtonGroup;
 import de.topobyte.jsoup.bootstrap3.forms.InputGroup;
 import de.topobyte.jsoup.bootstrap3.forms.SelectGroup;
 import de.topobyte.jsoup.components.Button;
@@ -61,13 +62,17 @@ public class BootstrapForms
 		return new InputGroup(group, eLabel, null, input);
 	}
 
-	public static void addSubmit(Form form, String buttonText)
+	public static ButtonGroup addSubmit(Form form, String buttonText)
 	{
-		Button button = form.ac(HTML.button());
+		Div group = form.ac(HTML.div("form-group"));
+
+		Button button = group.ac(HTML.button());
 		button.attr("type", "submit");
 		button.addClass("btn");
 		button.addClass("btn-default");
 		button.appendText(buttonText);
+
+		return new ButtonGroup(group, null, button);
 	}
 
 	public static SelectGroup addSelect(Form form, String name, String label,
