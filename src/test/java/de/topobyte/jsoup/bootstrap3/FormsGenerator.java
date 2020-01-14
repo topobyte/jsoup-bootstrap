@@ -29,8 +29,10 @@ import org.jsoup.nodes.Document;
 import de.topobyte.jsoup.HTML;
 import de.topobyte.jsoup.bootstrap3.components.Container;
 import de.topobyte.jsoup.bootstrap3.forms.InputGroup;
+import de.topobyte.jsoup.bootstrap3.forms.SelectGroup;
 import de.topobyte.jsoup.components.Form;
 import de.topobyte.jsoup.components.Input.Type;
+import de.topobyte.jsoup.components.Option;
 import de.topobyte.jsoup.nodes.Element;
 
 public class FormsGenerator extends BaseGenerator
@@ -96,9 +98,16 @@ public class FormsGenerator extends BaseGenerator
 				"password", "Password");
 		inputPassword.getInput().setType(Type.PASSWORD);
 
-		BootstrapFormsHorizontal.addSelect(form, "pet", "Preferred Pet",
-				Arrays.asList("Cat", "Dog", "Bird"),
+		SelectGroup selectGroup = BootstrapFormsHorizontal.addSelect(form,
+				"pet", "Preferred Pet", Arrays.asList("Cat", "Dog", "Bird"),
 				Arrays.asList("cat", "dog", "bird"));
+
+		Option initialOption = HTML.option();
+		selectGroup.getSelect().prependChild(initialOption);
+		initialOption.text("Please select");
+		initialOption.setSelected(true);
+		initialOption.attr("disabled", true);
+		initialOption.attr("hidden", true);
 
 		BootstrapFormsHorizontal.addRadio(form, "dring", "Preferred Drink",
 				Arrays.asList("Coke", "Water", "Beer"),
