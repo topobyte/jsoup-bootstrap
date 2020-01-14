@@ -23,6 +23,7 @@ import java.util.Map;
 import de.topobyte.jsoup.components.Div;
 import de.topobyte.jsoup.components.Label;
 import de.topobyte.jsoup.components.Option;
+import de.topobyte.jsoup.components.Select;
 import lombok.Getter;
 
 public class SelectGroup
@@ -33,18 +34,21 @@ public class SelectGroup
 	@Getter
 	private Label label;
 	@Getter
-	private Div divSelect;
+	private Div column;
+	@Getter
+	private Select select;
 	@Getter
 	private List<Option> options;
 	@Getter
 	private Map<String, Option> valueToOption;
 
-	public SelectGroup(Div group, Label label, Div divSelect,
+	public SelectGroup(Div group, Label label, Div column, Select select,
 			List<Option> options, Map<String, Option> valueToOption)
 	{
 		this.group = group;
 		this.label = label;
-		this.divSelect = divSelect;
+		this.column = column;
+		this.select = select;
 		this.options = options;
 		this.valueToOption = valueToOption;
 	}

@@ -33,16 +33,19 @@ public class RadioGroup
 	@Getter
 	private Label label;
 	@Getter
+	private Div column;
+	@Getter
 	private Div divInputs;
 	@Getter
 	private List<Input> inputs;
 	@Getter
 	private Map<String, Input> valueToInput;
 
-	public RadioGroup(Div group, Label label, Div divInputs, List<Input> inputs,
-			Map<String, Input> valueToInput)
+	public RadioGroup(Div group, Label label, Div column, Div divInputs,
+			List<Input> inputs, Map<String, Input> valueToInput)
 	{
 		this.group = group;
+		this.column = column;
 		this.inputs = inputs;
 		this.valueToInput = valueToInput;
 	}

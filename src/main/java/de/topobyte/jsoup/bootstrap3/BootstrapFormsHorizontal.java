@@ -115,7 +115,7 @@ public class BootstrapFormsHorizontal
 			map.put(values.get(i), option);
 		}
 
-		return new SelectGroup(group, eLabel, div, options, map);
+		return new SelectGroup(group, eLabel, div, select, options, map);
 	}
 
 	public static RadioGroup addRadio(Element form, String name, String label,
@@ -166,7 +166,7 @@ public class BootstrapFormsHorizontal
 			map.put(values.get(i), input);
 		}
 
-		return new RadioGroup(group, eLabel, div, inputs, map);
+		return new RadioGroup(group, eLabel, div, dr, inputs, map);
 	}
 
 	/**
