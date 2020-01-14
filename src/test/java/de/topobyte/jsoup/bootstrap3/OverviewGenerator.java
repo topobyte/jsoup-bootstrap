@@ -27,8 +27,9 @@ import static de.topobyte.jsoup.bootstrap3.Bootstrap.alert;
 import static de.topobyte.jsoup.bootstrap3.Bootstrap.button;
 import static de.topobyte.jsoup.bootstrap3.Bootstrap.label;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -48,6 +49,8 @@ import de.topobyte.jsoup.nodes.Element;
 
 public class OverviewGenerator extends BaseGenerator
 {
+
+	private Path path = Paths.get("/tmp/jsoup-bootstrap/index.html");
 
 	@Override
 	public void generate() throws IOException
@@ -88,7 +91,7 @@ public class OverviewGenerator extends BaseGenerator
 		Document doc = builder.getDocument();
 		System.out.println(doc);
 
-		builder.write(new File("/tmp/jsoup-bootstrap.html"));
+		builder.write(path);
 	}
 
 	private static void breadcrumbs(Container c)
