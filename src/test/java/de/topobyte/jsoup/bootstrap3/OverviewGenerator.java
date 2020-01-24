@@ -41,6 +41,7 @@ import de.topobyte.jsoup.bootstrap3.components.Alert;
 import de.topobyte.jsoup.bootstrap3.components.Breadcrumb;
 import de.topobyte.jsoup.bootstrap3.components.CollapsiblePanel;
 import de.topobyte.jsoup.bootstrap3.components.Container;
+import de.topobyte.jsoup.bootstrap3.components.ContextualType;
 import de.topobyte.jsoup.bootstrap3.components.Label;
 import de.topobyte.jsoup.bootstrap3.components.NavTabs;
 import de.topobyte.jsoup.bootstrap3.components.Panel;
@@ -163,10 +164,10 @@ public class OverviewGenerator extends BaseGenerator
 	{
 		div.ac(p().inner("Alerts:"));
 
-		List<Alert.Type> types = Arrays.asList(Alert.Type.values());
-		Iterator<Alert.Type> iterator = types.iterator();
+		List<ContextualType> types = Arrays.asList(ContextualType.values());
+		Iterator<ContextualType> iterator = types.iterator();
 		while (iterator.hasNext()) {
-			Alert.Type type = iterator.next();
+			ContextualType type = iterator.next();
 			Alert alert = div.ac(alert(type));
 			alert.appendText(
 					"I'm an alert of type " + type.toString().toLowerCase());

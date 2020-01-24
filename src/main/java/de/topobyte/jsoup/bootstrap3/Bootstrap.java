@@ -23,6 +23,7 @@ import de.topobyte.jsoup.bootstrap3.components.Breadcrumb;
 import de.topobyte.jsoup.bootstrap3.components.Button;
 import de.topobyte.jsoup.bootstrap3.components.Container;
 import de.topobyte.jsoup.bootstrap3.components.ContainerFluid;
+import de.topobyte.jsoup.bootstrap3.components.ContextualType;
 import de.topobyte.jsoup.bootstrap3.components.Label;
 import de.topobyte.jsoup.bootstrap3.components.ListGroup;
 import de.topobyte.jsoup.bootstrap3.components.ListGroupDiv;
@@ -61,7 +62,7 @@ public class Bootstrap
 		return new Label(type);
 	}
 
-	public static Alert alert(Alert.Type type)
+	public static Alert alert(ContextualType type)
 	{
 		return new Alert(type);
 	}

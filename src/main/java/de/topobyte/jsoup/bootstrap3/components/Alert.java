@@ -27,21 +27,15 @@ import de.topobyte.jsoup.components.Div;
 public class Alert extends Div
 {
 
-	public static enum Type {
-		SUCCESS,
-		INFO,
-		WARNING,
-		DANGER
-	}
-
-	private static Map<Type, String> map = new EnumMap<>(Type.class);
+	private static Map<ContextualType, String> map = new EnumMap<>(
+			ContextualType.class);
 	static {
-		for (Type type : Type.values()) {
+		for (ContextualType type : ContextualType.values()) {
 			map.put(type, type.name().toLowerCase());
 		}
 	}
 
-	public Alert(Type type)
+	public Alert(ContextualType type)
 	{
 		if (type == null) {
 			throw new IllegalArgumentException("null is not allowed");
@@ -51,13 +45,13 @@ public class Alert extends Div
 		attr("role", "alert");
 	}
 
-	public Alert(Type type, String text)
+	public Alert(ContextualType type, String text)
 	{
 		this(type);
 		appendText(text);
 	}
 
-	public Alert(Type type, Node child)
+	public Alert(ContextualType type, Node child)
 	{
 		this(type);
 		appendChild(child);
