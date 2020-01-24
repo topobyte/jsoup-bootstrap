@@ -27,6 +27,7 @@ import org.jsoup.nodes.Document;
 
 import de.topobyte.jsoup.bootstrap3.components.Container;
 import de.topobyte.jsoup.bootstrap3.components.ListGroup;
+import de.topobyte.jsoup.components.ListItem;
 import de.topobyte.jsoup.nodes.Element;
 
 public class ListGroupsGenerator extends BaseGenerator
@@ -50,6 +51,9 @@ public class ListGroupsGenerator extends BaseGenerator
 		c.ap(h1().inner("Basic"));
 		basic(c);
 
+		c.ap(h1().inner("Badges"));
+		badges(c);
+
 		Document doc = builder.getDocument();
 		System.out.println(doc);
 
@@ -64,6 +68,18 @@ public class ListGroupsGenerator extends BaseGenerator
 		list.addTextItem("Morbi leo risus");
 		list.addTextItem("Porta ac consectetur ac");
 		list.addTextItem("Vestibulum at eros");
+	}
+
+	private void badges(Container content)
+	{
+		ListGroup list = content.ac(new ListGroup());
+		ListItem item;
+		item = list.addTextItem("Cras justo odio");
+		item.ac(Bootstrap.badge().appendText("14"));
+		item = list.addTextItem("Dapibus ac facilisis in");
+		item.ac(Bootstrap.badge().appendText("2"));
+		item = list.addTextItem("Morbi leo risus");
+		item.ac(Bootstrap.badge().appendText("1"));
 	}
 
 }

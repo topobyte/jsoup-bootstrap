@@ -18,6 +18,7 @@
 package de.topobyte.jsoup.bootstrap3;
 
 import de.topobyte.jsoup.bootstrap3.components.Alert;
+import de.topobyte.jsoup.bootstrap3.components.Badge;
 import de.topobyte.jsoup.bootstrap3.components.Breadcrumb;
 import de.topobyte.jsoup.bootstrap3.components.Button;
 import de.topobyte.jsoup.bootstrap3.components.Container;
@@ -61,6 +62,11 @@ public class Bootstrap
 	public static Alert alert(Alert.Type type)
 	{
 		return new Alert(type);
+	}
+
+	public static Badge badge()
+	{
+		return new Badge();
 	}
 
 }
