@@ -26,6 +26,7 @@ import java.nio.file.Paths;
 import org.jsoup.nodes.Document;
 
 import de.topobyte.jsoup.bootstrap3.components.Container;
+import de.topobyte.jsoup.bootstrap3.components.ContextualType;
 import de.topobyte.jsoup.bootstrap3.components.ListGroup;
 import de.topobyte.jsoup.bootstrap3.components.ListGroupDiv;
 import de.topobyte.jsoup.components.ListItem;
@@ -63,6 +64,12 @@ public class ListGroupsGenerator extends BaseGenerator
 
 		c.ap(h1().inner("Disabled items"));
 		disabled(c);
+
+		c.ap(h1().inner("Contextual classes, default"));
+		basicContextual(c);
+
+		c.ap(h1().inner("Contextual classes, linked"));
+		linkedContextual(c);
 
 		Document doc = builder.getDocument();
 		System.out.println(doc);
@@ -120,6 +127,29 @@ public class ListGroupsGenerator extends BaseGenerator
 		list.addA("#", "Morbi leo risus");
 		list.addA("#", "Porta ac consectetur ac");
 		list.addA("#", "Vestibulum at eros");
+	}
+
+	private void basicContextual(Container content)
+	{
+		ListGroup list = content.ac(Bootstrap.listGroup());
+		list.addTextItem("Cras justo odio").setContext(ContextualType.SUCCESS);
+		list.addTextItem("Dapibus ac facilisis in")
+				.setContext(ContextualType.INFO);
+		list.addTextItem("Porta ac consectetur ac")
+				.setContext(ContextualType.WARNING);
+		list.addTextItem("Vestibulum at eros")
+				.setContext(ContextualType.DANGER);
+	}
+
+	private void linkedContextual(Container content)
+	{
+		ListGroupDiv list = content.ac(Bootstrap.listGroupDiv());
+		list.addA("#", "Cras justo odio").setContext(ContextualType.SUCCESS);
+		list.addA("#", "Dapibus ac facilisis in")
+				.setContext(ContextualType.INFO);
+		list.addA("#", "Porta ac consectetur ac")
+				.setContext(ContextualType.WARNING);
+		list.addA("#", "Vestibulum at eros").setContext(ContextualType.DANGER);
 	}
 
 }

@@ -19,8 +19,9 @@ package de.topobyte.jsoup.bootstrap3.components;
 
 import org.jsoup.nodes.Node;
 
-import de.topobyte.jsoup.components.ListItem;
+import de.topobyte.jsoup.bootstrap3.components.listgroup.ListGroupItem;
 import de.topobyte.jsoup.components.UnorderedList;
+import de.topobyte.jsoup.nodes.Element;
 
 public class ListGroup extends UnorderedList
 {
@@ -31,27 +32,34 @@ public class ListGroup extends UnorderedList
 		addClass("list-group");
 	}
 
-	@Override
-	public ListItem addItem()
+	private void addClass(Element element)
 	{
-		ListItem item = super.addItem();
-		item.addClass("list-group-item");
+		element.addClass("list-group-item");
+	}
+
+	@Override
+	public ListGroupItem addItem()
+	{
+		ListGroupItem item = ac(new ListGroupItem());
+		addClass(item);
 		return item;
 	}
 
 	@Override
-	public ListItem addTextItem(String text)
+	public ListGroupItem addTextItem(String text)
 	{
-		ListItem item = super.addTextItem(text);
-		item.addClass("list-group-item");
+		ListGroupItem item = addItem();
+		item.appendText(text);
+		addClass(item);
 		return item;
 	}
 
 	@Override
-	public ListItem addItem(Node e)
+	public ListGroupItem addItem(Node e)
 	{
-		ListItem item = super.addItem(e);
-		item.addClass("list-group-item");
+		ListGroupItem item = addItem();
+		item.ap(e);
+		addClass(item);
 		return item;
 	}
 
