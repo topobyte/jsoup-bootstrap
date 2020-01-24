@@ -23,9 +23,22 @@ import de.topobyte.jsoup.components.ListItem;
 public class ListGroupItem extends ListItem
 {
 
-	public void setContext(ContextualType type)
+	public ListGroupItem setContext(ContextualType type)
 	{
 		ContextualLists.setContext(this, type);
+		return this;
+	}
+
+	public ListGroupItem setActive()
+	{
+		addClass("active");
+		return this;
+	}
+
+	public ListGroupItem setDisabled()
+	{
+		addClass("disabled");
+		return this;
 	}
 
 }

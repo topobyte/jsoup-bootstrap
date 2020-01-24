@@ -38,9 +38,22 @@ public class ListGroupA extends A
 		super(href);
 	}
 
-	public void setContext(ContextualType type)
+	public ListGroupA setContext(ContextualType type)
 	{
 		ContextualLists.setContext(this, type);
+		return this;
+	}
+
+	public ListGroupA setActive()
+	{
+		addClass("active");
+		return this;
+	}
+
+	public ListGroupA setDisabled()
+	{
+		addClass("disabled");
+		return this;
 	}
 
 }

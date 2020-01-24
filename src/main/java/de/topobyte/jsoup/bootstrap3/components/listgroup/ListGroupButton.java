@@ -23,9 +23,22 @@ import de.topobyte.jsoup.components.Button;
 public class ListGroupButton extends Button
 {
 
-	public void setContext(ContextualType type)
+	public ListGroupButton setContext(ContextualType type)
 	{
 		ContextualLists.setContext(this, type);
+		return this;
+	}
+
+	public ListGroupButton setActive()
+	{
+		addClass("active");
+		return this;
+	}
+
+	public ListGroupButton setDisabled()
+	{
+		addClass("disabled");
+		return this;
 	}
 
 }

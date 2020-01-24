@@ -102,7 +102,7 @@ public class ListGroupsGenerator extends BaseGenerator
 	private void linked(Container content)
 	{
 		ListGroupDiv list = content.ac(Bootstrap.listGroupDiv());
-		list.addA("#", "Cras justo odio").addClass("active");
+		list.addA("#", "Cras justo odio").setActive();
 		list.addA("#", "Dapibus ac facilisis in");
 		list.addA("#", "Morbi leo risus");
 		list.addA("#", "Porta ac consectetur ac");
@@ -112,8 +112,8 @@ public class ListGroupsGenerator extends BaseGenerator
 	private void buttons(Container content)
 	{
 		ListGroupDiv list = content.ac(Bootstrap.listGroupDiv());
-		list.addButton("Cras justo odio");
-		list.addButton("Dapibus ac facilisis in");
+		list.addButton("Cras justo odio").setDisabled();
+		list.addButton("Dapibus ac facilisis in").setActive();
 		list.addButton("Morbi leo risus");
 		list.addButton("Porta ac consectetur ac");
 		list.addButton("Vestibulum at eros");
@@ -122,7 +122,7 @@ public class ListGroupsGenerator extends BaseGenerator
 	private void disabled(Container content)
 	{
 		ListGroupDiv list = content.ac(Bootstrap.listGroupDiv());
-		list.addA("#", "Cras justo odio").addClass("disabled");
+		list.addA("#", "Cras justo odio").setDisabled();
 		list.addA("#", "Dapibus ac facilisis in");
 		list.addA("#", "Morbi leo risus");
 		list.addA("#", "Porta ac consectetur ac");
