@@ -24,6 +24,7 @@ import de.topobyte.jsoup.bootstrap3.components.Button;
 import de.topobyte.jsoup.bootstrap3.components.Container;
 import de.topobyte.jsoup.bootstrap3.components.ContainerFluid;
 import de.topobyte.jsoup.bootstrap3.components.Label;
+import de.topobyte.jsoup.bootstrap3.components.ListGroup;
 import de.topobyte.jsoup.components.Div;
 
 public class Bootstrap
@@ -67,6 +68,11 @@ public class Bootstrap
 	public static Badge badge()
 	{
 		return new Badge();
+	}
+
+	public static ListGroup listGroup()
+	{
+		return new ListGroup();
 	}
 
 }

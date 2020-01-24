@@ -62,7 +62,7 @@ public class ListGroupsGenerator extends BaseGenerator
 
 	private void basic(Container content)
 	{
-		ListGroup list = content.ac(new ListGroup());
+		ListGroup list = content.ac(Bootstrap.listGroup());
 		list.addTextItem("Cras justo odio");
 		list.addTextItem("Dapibus ac facilisis in");
 		list.addTextItem("Morbi leo risus");
@@ -72,7 +72,7 @@ public class ListGroupsGenerator extends BaseGenerator
 
 	private void badges(Container content)
 	{
-		ListGroup list = content.ac(new ListGroup());
+		ListGroup list = content.ac(Bootstrap.listGroup());
 		ListItem item;
 		item = list.addTextItem("Cras justo odio");
 		item.ac(Bootstrap.badge().appendText("14"));
