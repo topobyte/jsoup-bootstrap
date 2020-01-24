@@ -25,6 +25,7 @@ import de.topobyte.jsoup.bootstrap3.components.Container;
 import de.topobyte.jsoup.bootstrap3.components.ContainerFluid;
 import de.topobyte.jsoup.bootstrap3.components.Label;
 import de.topobyte.jsoup.bootstrap3.components.ListGroup;
+import de.topobyte.jsoup.bootstrap3.components.ListGroupDiv;
 import de.topobyte.jsoup.components.Div;
 
 public class Bootstrap
@@ -73,6 +74,11 @@ public class Bootstrap
 	public static ListGroup listGroup()
 	{
 		return new ListGroup();
+	}
+
+	public static ListGroupDiv listGroupDiv()
+	{
+		return new ListGroupDiv();
 	}
 
 }

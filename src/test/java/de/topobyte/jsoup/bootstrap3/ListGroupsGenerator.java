@@ -27,6 +27,7 @@ import org.jsoup.nodes.Document;
 
 import de.topobyte.jsoup.bootstrap3.components.Container;
 import de.topobyte.jsoup.bootstrap3.components.ListGroup;
+import de.topobyte.jsoup.bootstrap3.components.ListGroupDiv;
 import de.topobyte.jsoup.components.ListItem;
 import de.topobyte.jsoup.nodes.Element;
 
@@ -54,6 +55,15 @@ public class ListGroupsGenerator extends BaseGenerator
 		c.ap(h1().inner("Badges"));
 		badges(c);
 
+		c.ap(h1().inner("Linked items"));
+		linked(c);
+
+		c.ap(h1().inner("Button items"));
+		buttons(c);
+
+		c.ap(h1().inner("Disabled items"));
+		disabled(c);
+
 		Document doc = builder.getDocument();
 		System.out.println(doc);
 
@@ -80,6 +90,36 @@ public class ListGroupsGenerator extends BaseGenerator
 		item.ac(Bootstrap.badge().appendText("2"));
 		item = list.addTextItem("Morbi leo risus");
 		item.ac(Bootstrap.badge().appendText("1"));
+	}
+
+	private void linked(Container content)
+	{
+		ListGroupDiv list = content.ac(Bootstrap.listGroupDiv());
+		list.addA("#", "Cras justo odio").addClass("active");
+		list.addA("#", "Dapibus ac facilisis in");
+		list.addA("#", "Morbi leo risus");
+		list.addA("#", "Porta ac consectetur ac");
+		list.addA("#", "Vestibulum at eros");
+	}
+
+	private void buttons(Container content)
+	{
+		ListGroupDiv list = content.ac(Bootstrap.listGroupDiv());
+		list.addButton("Cras justo odio");
+		list.addButton("Dapibus ac facilisis in");
+		list.addButton("Morbi leo risus");
+		list.addButton("Porta ac consectetur ac");
+		list.addButton("Vestibulum at eros");
+	}
+
+	private void disabled(Container content)
+	{
+		ListGroupDiv list = content.ac(Bootstrap.listGroupDiv());
+		list.addA("#", "Cras justo odio").addClass("disabled");
+		list.addA("#", "Dapibus ac facilisis in");
+		list.addA("#", "Morbi leo risus");
+		list.addA("#", "Porta ac consectetur ac");
+		list.addA("#", "Vestibulum at eros");
 	}
 
 }
