@@ -15,27 +15,44 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jsoup-bootstrap. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jsoup.bootstrap3;
+package de.topobyte.jsoup.bootstrap3.components;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import org.jsoup.nodes.Node;
 
-public class Test
+import de.topobyte.jsoup.components.ListItem;
+import de.topobyte.jsoup.components.UnorderedList;
+
+public class ListGroup extends UnorderedList
 {
 
-	public static void main(String[] args) throws IOException
+	public ListGroup()
 	{
-		Files.createDirectories(Paths.get("/tmp/jsoup-bootstrap"));
+		super();
+		addClass("list-group");
+	}
 
-		OverviewGenerator overviewGenerator = new OverviewGenerator();
-		overviewGenerator.generate();
+	@Override
+	public ListItem addItem()
+	{
+		ListItem item = super.addItem();
+		item.addClass("list-group-item");
+		return item;
+	}
 
-		FormsGenerator formsGenerator = new FormsGenerator();
-		formsGenerator.generate();
+	@Override
+	public ListItem addTextItem(String text)
+	{
+		ListItem item = super.addTextItem(text);
+		item.addClass("list-group-item");
+		return item;
+	}
 
-		ListGroupsGenerator listGroupsGenerator = new ListGroupsGenerator();
-		listGroupsGenerator.generate();
+	@Override
+	public ListItem addItem(Node e)
+	{
+		ListItem item = super.addItem(e);
+		item.addClass("list-group-item");
+		return item;
 	}
 
 }

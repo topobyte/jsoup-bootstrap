@@ -60,7 +60,7 @@ public class BaseGenerator
 
 		menu.addMain(a("index.html").appendText("Overview"), false);
 		menu.addMain(a("forms.html").appendText("Forms"), false);
-		menu.addMain(a("#").appendText("Partners"), false);
+		menu.addMain(a("list-groups.html").appendText("List-Groups"), false);
 
 		menu.addRight(a("#").appendText("About"), false);
 	}
