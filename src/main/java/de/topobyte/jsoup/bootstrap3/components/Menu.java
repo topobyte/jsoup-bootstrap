@@ -84,7 +84,6 @@ public class Menu extends Element
 			li.addClass("active");
 		}
 		li.appendChild(content);
-		navMain.appendChild(li);
 	}
 
 	public void addRight(Node content, boolean active)
