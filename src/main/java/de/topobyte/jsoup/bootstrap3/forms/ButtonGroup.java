@@ -18,23 +18,19 @@
 package de.topobyte.jsoup.bootstrap3.forms;
 
 import de.topobyte.jsoup.components.Button;
-import de.topobyte.jsoup.components.Div;
 import lombok.Getter;
 
 public class ButtonGroup
 {
 
 	@Getter
-	private Div group;
-	@Getter
-	private Div divButton;
+	private Group group;
 	@Getter
 	private Button button;
 
-	public ButtonGroup(Div group, Div divButton, Button button)
+	public ButtonGroup(Group group, Button button)
 	{
 		this.group = group;
-		this.divButton = divButton;
 		this.button = button;
 	}
 

@@ -24,12 +24,16 @@ import java.util.Map;
 
 import de.topobyte.jsoup.HTML;
 import de.topobyte.jsoup.bootstrap3.forms.ButtonGroup;
+import de.topobyte.jsoup.bootstrap3.forms.Checkbox;
+import de.topobyte.jsoup.bootstrap3.forms.Group;
 import de.topobyte.jsoup.bootstrap3.forms.InputGroup;
 import de.topobyte.jsoup.bootstrap3.forms.RadioGroup;
 import de.topobyte.jsoup.bootstrap3.forms.SelectGroup;
 import de.topobyte.jsoup.components.Button;
 import de.topobyte.jsoup.components.Div;
+import de.topobyte.jsoup.components.Form;
 import de.topobyte.jsoup.components.Input;
+import de.topobyte.jsoup.components.Input.Type;
 import de.topobyte.jsoup.components.Label;
 import de.topobyte.jsoup.components.Option;
 import de.topobyte.jsoup.components.Select;
@@ -38,19 +42,15 @@ import de.topobyte.jsoup.nodes.Element;
 public class BootstrapFormsHorizontal
 {
 
-	public static InputGroup addInput(Element form, String name)
+	public static Group addGroup(Element form)
 	{
 		Div group = form.ac(HTML.div("form-group"));
-
 		Div div = group.ac(HTML.div("col-sm-offset-2 col-sm-10"));
-		Input input = div.ac(HTML.input());
-		input.setName(name);
-		input.addClass("form-control");
 
-		return new InputGroup(group, null, div, input);
+		return new Group(group, null, div);
 	}
 
-	public static InputGroup addInput(Element form, String name, String label)
+	public static Group addGroup(Element form, String label)
 	{
 		Div group = form.ac(HTML.div("form-group"));
 
@@ -59,25 +59,43 @@ public class BootstrapFormsHorizontal
 		eLabel.text(label);
 
 		Div div = group.ac(HTML.div("col-sm-10"));
-		Input input = div.ac(HTML.input());
+
+		return new Group(group, eLabel, div);
+	}
+
+	public static InputGroup addInput(Element form, String name)
+	{
+		Group group = addGroup(form);
+
+		Input input = group.getContent().ac(HTML.input());
 		input.setName(name);
 		input.addClass("form-control");
 
-		return new InputGroup(group, eLabel, div, input);
+		return new InputGroup(group, input);
+	}
+
+	public static InputGroup addInput(Element form, String name, String label)
+	{
+		Group group = addGroup(form, label);
+
+		Input input = group.getContent().ac(HTML.input());
+		input.setName(name);
+		input.addClass("form-control");
+
+		return new InputGroup(group, input);
 	}
 
 	public static ButtonGroup addSubmit(Element form, String buttonText)
 	{
-		Div group = form.ac(HTML.div("form-group"));
-		Div div = group.ac(HTML.div("col-sm-offset-2 col-sm-10"));
+		Group group = addGroup(form);
 
-		Button button = div.ac(HTML.button());
+		Button button = group.getContent().ac(HTML.button());
 		button.attr("type", "submit");
 		button.addClass("btn");
 		button.addClass("btn-default");
 		button.appendText(buttonText);
 
-		return new ButtonGroup(group, null, button);
+		return new ButtonGroup(group, button);
 	}
 
 	public static SelectGroup addSelect(Element form, String name, String label,
@@ -89,15 +107,9 @@ public class BootstrapFormsHorizontal
 	public static SelectGroup addSelect(Element form, String name, String label,
 			List<String> names, List<String> values, int selectedIndex)
 	{
-		Div group = form.ac(HTML.div("form-group"));
+		Group group = addGroup(form, label);
 
-		Label eLabel = group.ac(HTML.label());
-		eLabel.addClass("col-sm-2 control-label");
-		eLabel.text(label);
-
-		Div div = group.ac(HTML.div("col-sm-10"));
-
-		Select select = div.ac(HTML.select());
+		Select select = group.getContent().ac(HTML.select());
 		select.attr("name", name);
 		select.addClass("form-control");
 
@@ -115,7 +127,7 @@ public class BootstrapFormsHorizontal
 			map.put(values.get(i), option);
 		}
 
-		return new SelectGroup(group, eLabel, div, select, options, map);
+		return new SelectGroup(group, select, options, map);
 	}
 
 	public static RadioGroup addRadio(Element form, String name, String label,
@@ -134,15 +146,9 @@ public class BootstrapFormsHorizontal
 			List<String> names, List<String> values, int selectedIndex,
 			String onChange)
 	{
-		Div group = form.ac(HTML.div("form-group"));
+		Group group = addGroup(form, label);
 
-		Label eLabel = group.ac(HTML.label());
-		eLabel.addClass("col-sm-2 control-label");
-		eLabel.text(label);
-
-		Div div = group.ac(HTML.div("col-sm-10"));
-
-		Div dr = div.ac(HTML.div("radio"));
+		Div dr = group.getContent().ac(HTML.div("radio"));
 
 		List<Input> inputs = new ArrayList<>();
 		Map<String, Input> map = new HashMap<>();
@@ -166,7 +172,30 @@ public class BootstrapFormsHorizontal
 			map.put(values.get(i), input);
 		}
 
-		return new RadioGroup(group, eLabel, div, dr, inputs, map);
+		return new RadioGroup(group, dr, inputs, map);
+	}
+
+	public static Checkbox addCheckbox(Form form, String name, String label)
+	{
+		return addCheckbox(form, name, label, null);
+	}
+
+	public static Checkbox addCheckbox(Form form, String name, String label,
+			String text)
+	{
+		Group group = label == null ? addGroup(form) : addGroup(form, label);
+
+		Div checkbox = group.getContent().ac(HTML.div("checkbox"));
+
+		Label boxLabel = checkbox.ac(HTML.label());
+		Input input = boxLabel.ac(HTML.input());
+		input.setName(name);
+		input.setType(Type.CHECKBOX);
+		if (text != null) {
+			boxLabel.appendText(text);
+		}
+
+		return new Checkbox(checkbox, boxLabel, input);
 	}
 
 	/**
@@ -174,14 +203,8 @@ public class BootstrapFormsHorizontal
 	 */
 	public static void addElement(Element form, String label, Element element)
 	{
-		Div group = form.ac(HTML.div("form-group"));
-
-		Label eLabel = group.ac(HTML.label());
-		eLabel.addClass("col-sm-2 control-label");
-		eLabel.text(label);
-
-		Div div = group.ac(HTML.div("col-sm-10"));
-		div.ac(element);
+		Group group = addGroup(form, label);
+		group.getContent().ac(element);
 	}
 
 	/**

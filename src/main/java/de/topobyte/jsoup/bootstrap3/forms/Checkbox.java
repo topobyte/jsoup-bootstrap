@@ -17,31 +17,26 @@
 
 package de.topobyte.jsoup.bootstrap3.forms;
 
-import java.util.List;
-import java.util.Map;
-
 import de.topobyte.jsoup.components.Div;
 import de.topobyte.jsoup.components.Input;
+import de.topobyte.jsoup.components.Label;
 import lombok.Getter;
 
-public class RadioGroup
+public class Checkbox
 {
 
 	@Getter
-	private Group group;
+	private Div div;
 	@Getter
-	private Div divInputs;
+	private Label label;
 	@Getter
-	private List<Input> inputs;
-	@Getter
-	private Map<String, Input> valueToInput;
+	private Input input;
 
-	public RadioGroup(Group group, Div divInputs, List<Input> inputs,
-			Map<String, Input> valueToInput)
+	public Checkbox(Div div, Label label, Input input)
 	{
-		this.group = group;
-		this.inputs = inputs;
-		this.valueToInput = valueToInput;
+		this.div = div;
+		this.label = label;
+		this.input = input;
 	}
 
 }

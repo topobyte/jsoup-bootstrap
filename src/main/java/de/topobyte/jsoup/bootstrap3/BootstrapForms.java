@@ -24,72 +24,86 @@ import java.util.Map;
 
 import de.topobyte.jsoup.HTML;
 import de.topobyte.jsoup.bootstrap3.forms.ButtonGroup;
+import de.topobyte.jsoup.bootstrap3.forms.Checkbox;
+import de.topobyte.jsoup.bootstrap3.forms.Group;
 import de.topobyte.jsoup.bootstrap3.forms.InputGroup;
 import de.topobyte.jsoup.bootstrap3.forms.SelectGroup;
 import de.topobyte.jsoup.components.Button;
 import de.topobyte.jsoup.components.Div;
-import de.topobyte.jsoup.components.Form;
 import de.topobyte.jsoup.components.Input;
+import de.topobyte.jsoup.components.Input.Type;
 import de.topobyte.jsoup.components.Label;
 import de.topobyte.jsoup.components.Option;
 import de.topobyte.jsoup.components.Select;
+import de.topobyte.jsoup.nodes.Element;
 
 public class BootstrapForms
 {
 
-	public static InputGroup addInput(Form form, String name)
+	public static Group addGroup(Element form)
 	{
 		Div group = form.ac(HTML.div("form-group"));
 
-		Input input = group.ac(HTML.input());
-		input.setName(name);
-		input.addClass("form-control");
-
-		return new InputGroup(group, null, null, input);
+		return new Group(group, null, group);
 	}
 
-	public static InputGroup addInput(Form form, String name, String label)
+	public static Group addGroup(Element form, String label)
 	{
 		Div group = form.ac(HTML.div("form-group"));
 
 		Label eLabel = group.ac(HTML.label());
 		eLabel.text(label);
 
-		Input input = group.ac(HTML.input());
+		return new Group(group, eLabel, group);
+	}
+
+	public static InputGroup addInput(Element form, String name)
+	{
+		Group group = addGroup(form);
+
+		Input input = group.getContent().ac(HTML.input());
 		input.setName(name);
 		input.addClass("form-control");
 
-		return new InputGroup(group, eLabel, null, input);
+		return new InputGroup(group, input);
 	}
 
-	public static ButtonGroup addSubmit(Form form, String buttonText)
+	public static InputGroup addInput(Element form, String name, String label)
 	{
-		Div group = form.ac(HTML.div("form-group"));
+		Group group = addGroup(form, label);
 
-		Button button = group.ac(HTML.button());
+		Input input = group.getContent().ac(HTML.input());
+		input.setName(name);
+		input.addClass("form-control");
+
+		return new InputGroup(group, input);
+	}
+
+	public static ButtonGroup addSubmit(Element form, String buttonText)
+	{
+		Group group = addGroup(form);
+
+		Button button = group.getContent().ac(HTML.button());
 		button.attr("type", "submit");
 		button.addClass("btn");
 		button.addClass("btn-default");
 		button.appendText(buttonText);
 
-		return new ButtonGroup(group, null, button);
+		return new ButtonGroup(group, button);
 	}
 
-	public static SelectGroup addSelect(Form form, String name, String label,
+	public static SelectGroup addSelect(Element form, String name, String label,
 			List<String> names, List<String> values)
 	{
 		return addSelect(form, name, label, names, values, -1);
 	}
 
-	public static SelectGroup addSelect(Form form, String name, String label,
+	public static SelectGroup addSelect(Element form, String name, String label,
 			List<String> names, List<String> values, int selectedIndex)
 	{
-		Div group = form.ac(HTML.div("form-group"));
+		Group group = addGroup(form, label);
 
-		Label eLabel = group.ac(HTML.label());
-		eLabel.text(label);
-
-		Select select = group.ac(HTML.select());
+		Select select = group.getContent().ac(HTML.select());
 		select.attr("name", name);
 		select.addClass("form-control");
 
@@ -107,7 +121,27 @@ public class BootstrapForms
 			map.put(values.get(i), option);
 		}
 
-		return new SelectGroup(group, eLabel, null, select, options, map);
+		return new SelectGroup(group, select, options, map);
+	}
+
+	public static Checkbox addCheckbox(Element form, String name)
+	{
+		return addCheckbox(form, name, null);
+	}
+
+	public static Checkbox addCheckbox(Element form, String name, String text)
+	{
+		Div checkbox = form.ac(HTML.div("checkbox"));
+
+		Label label = checkbox.ac(HTML.label());
+		Input input = label.ac(HTML.input());
+		input.setName(name);
+		input.setType(Type.CHECKBOX);
+		if (text != null) {
+			label.appendText(text);
+		}
+
+		return new Checkbox(checkbox, label, input);
 	}
 
 }

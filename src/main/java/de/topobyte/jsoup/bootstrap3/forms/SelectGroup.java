@@ -20,8 +20,6 @@ package de.topobyte.jsoup.bootstrap3.forms;
 import java.util.List;
 import java.util.Map;
 
-import de.topobyte.jsoup.components.Div;
-import de.topobyte.jsoup.components.Label;
 import de.topobyte.jsoup.components.Option;
 import de.topobyte.jsoup.components.Select;
 import lombok.Getter;
@@ -30,11 +28,7 @@ public class SelectGroup
 {
 
 	@Getter
-	private Div group;
-	@Getter
-	private Label label;
-	@Getter
-	private Div column;
+	private Group group;
 	@Getter
 	private Select select;
 	@Getter
@@ -42,12 +36,10 @@ public class SelectGroup
 	@Getter
 	private Map<String, Option> valueToOption;
 
-	public SelectGroup(Div group, Label label, Div column, Select select,
-			List<Option> options, Map<String, Option> valueToOption)
+	public SelectGroup(Group group, Select select, List<Option> options,
+			Map<String, Option> valueToOption)
 	{
 		this.group = group;
-		this.label = label;
-		this.column = column;
 		this.select = select;
 		this.options = options;
 		this.valueToOption = valueToOption;

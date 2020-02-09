@@ -17,28 +17,20 @@
 
 package de.topobyte.jsoup.bootstrap3.forms;
 
-import de.topobyte.jsoup.components.Div;
 import de.topobyte.jsoup.components.Input;
-import de.topobyte.jsoup.components.Label;
 import lombok.Getter;
 
 public class InputGroup
 {
 
 	@Getter
-	private Div group;
-	@Getter
-	private Label label;
-	@Getter
-	private Div divInput;
+	private Group group;
 	@Getter
 	private Input input;
 
-	public InputGroup(Div group, Label label, Div divInput, Input input)
+	public InputGroup(Group group, Input input)
 	{
 		this.group = group;
-		this.label = label;
-		this.divInput = divInput;
 		this.input = input;
 	}
 

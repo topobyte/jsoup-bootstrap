@@ -29,6 +29,7 @@ import org.jsoup.nodes.Document;
 import de.topobyte.jsoup.FormUtil;
 import de.topobyte.jsoup.HTML;
 import de.topobyte.jsoup.bootstrap3.components.Container;
+import de.topobyte.jsoup.bootstrap3.forms.Group;
 import de.topobyte.jsoup.bootstrap3.forms.InputGroup;
 import de.topobyte.jsoup.bootstrap3.forms.SelectGroup;
 import de.topobyte.jsoup.components.Form;
@@ -81,6 +82,12 @@ public class FormsGenerator extends BaseGenerator
 				Arrays.asList("Cat", "Dog", "Bird"),
 				Arrays.asList("cat", "dog", "bird"));
 
+		Group group = BootstrapForms.addGroup(form, "Options");
+		BootstrapForms.addCheckbox(group.getContent(), "stay_signed_in",
+				"Keep me signed in");
+		BootstrapForms.addCheckbox(group.getContent(), "other",
+				"Something else");
+
 		BootstrapForms.addSubmit(form, "Continue");
 	}
 
@@ -107,6 +114,17 @@ public class FormsGenerator extends BaseGenerator
 		BootstrapFormsHorizontal.addRadio(form, "dring", "Preferred Drink",
 				Arrays.asList("Coke", "Water", "Beer"),
 				Arrays.asList("coke", "water", "beer"));
+
+		Group group = BootstrapFormsHorizontal.addGroup(form, "Options");
+		BootstrapForms.addCheckbox(group.getContent(), "stay_signed_in",
+				"Keep me signed in");
+		BootstrapForms.addCheckbox(group.getContent(), "other",
+				"Something else");
+
+		BootstrapFormsHorizontal.addCheckbox(form, "stay_signed_in", "Sign in",
+				"Keep me signed in");
+		BootstrapFormsHorizontal.addCheckbox(form, "other", null,
+				"Something else");
 
 		BootstrapFormsHorizontal.addSubmit(form, "Continue");
 	}
