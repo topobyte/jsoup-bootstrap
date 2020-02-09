@@ -29,9 +29,13 @@ import org.jsoup.nodes.Document;
 import de.topobyte.jsoup.FormUtil;
 import de.topobyte.jsoup.HTML;
 import de.topobyte.jsoup.bootstrap3.components.Container;
+import de.topobyte.jsoup.bootstrap3.forms.Checkbox;
 import de.topobyte.jsoup.bootstrap3.forms.Group;
+import de.topobyte.jsoup.bootstrap3.forms.InlineCheckbox;
 import de.topobyte.jsoup.bootstrap3.forms.InputGroup;
+import de.topobyte.jsoup.bootstrap3.forms.RadioGroup;
 import de.topobyte.jsoup.bootstrap3.forms.SelectGroup;
+import de.topobyte.jsoup.components.Div;
 import de.topobyte.jsoup.components.Form;
 import de.topobyte.jsoup.components.Input.Type;
 import de.topobyte.jsoup.nodes.Element;
@@ -71,24 +75,8 @@ public class FormsGenerator extends BaseGenerator
 		Form form = content.ac(HTML.form());
 		form.attr("id", "form1");
 
-		InputGroup inputName = BootstrapForms.addInput(form, "name", "Name");
-		inputName.getInput().setPlaceholder("Your name");
-
-		InputGroup inputPassword = BootstrapForms.addInput(form, "password",
-				"Password");
-		inputPassword.getInput().setType(Type.PASSWORD);
-
-		BootstrapForms.addSelect(form, "pet", "Preferred Pet",
-				Arrays.asList("Cat", "Dog", "Bird"),
-				Arrays.asList("cat", "dog", "bird"));
-
-		Group group = BootstrapForms.addGroup(form, "Options");
-		BootstrapForms.addCheckbox(group.getContent(), "stay_signed_in",
-				"Keep me signed in");
-		BootstrapForms.addCheckbox(group.getContent(), "other",
-				"Something else");
-
-		BootstrapForms.addSubmit(form, "Continue");
+		BootstrapForms forms = new BootstrapForms();
+		formContent(form, forms);
 	}
 
 	private void horizontalForm(Container content)
@@ -97,36 +85,55 @@ public class FormsGenerator extends BaseGenerator
 		form.attr("id", "form2");
 		form.addClass("form-horizontal");
 
-		InputGroup inputName = BootstrapFormsHorizontal.addInput(form, "name",
-				"Name");
+		BootstrapFormsHorizontal forms = new BootstrapFormsHorizontal();
+		formContent(form, forms);
+	}
+
+	private void formContent(Form form, BootstrapForms forms)
+	{
+		InputGroup inputName = forms.addInput(form, "name", "Name");
 		inputName.getInput().setPlaceholder("Your name");
 
-		InputGroup inputPassword = BootstrapFormsHorizontal.addInput(form,
-				"password", "Password");
+		InputGroup inputPassword = forms.addInput(form, "password", "Password");
 		inputPassword.getInput().setType(Type.PASSWORD);
 
-		SelectGroup selectGroup = BootstrapFormsHorizontal.addSelect(form,
-				"pet", "Preferred Pet", Arrays.asList("Cat", "Dog", "Bird"),
+		SelectGroup selectGroup = forms.addSelect(form, "pet", "Preferred Pet",
+				Arrays.asList("Cat", "Dog", "Bird"),
 				Arrays.asList("cat", "dog", "bird"));
 
 		FormUtil.addPleaseSelectOption(selectGroup.getSelect());
 
-		BootstrapFormsHorizontal.addRadio(form, "dring", "Preferred Drink",
+		RadioGroup radios = forms.addRadio(form, "drink", "Preferred Drink",
 				Arrays.asList("Coke", "Water", "Beer"),
-				Arrays.asList("coke", "water", "beer"));
+				Arrays.asList("coke", "water", "beer"), true);
 
-		Group group = BootstrapFormsHorizontal.addGroup(form, "Options");
-		BootstrapForms.addCheckbox(group.getContent(), "stay_signed_in",
+		Group group = radios.getGroup();
+		Checkbox checkbox = forms.addCheckbox(group.getContent(), "sugar",
+				"And everyhting with sugar");
+		checkbox.getInput().setChecked(true);
+
+		group = forms.addGroup(form);
+		forms.addCheckbox(group.getContent(), "stay_signed_in",
+				"A checkbox without a label to the left");
+
+		radios = forms.addRadio(form, "drink", "Preferred Drink",
+				Arrays.asList("Coke", "Water", "Beer"),
+				Arrays.asList("coke", "water", "beer"), false);
+		radios.getInputs().get(1).setChecked(true);
+
+		group = forms.addGroup(form, "Options");
+		forms.addCheckbox(group.getContent(), "stay_signed_in",
 				"Keep me signed in");
-		BootstrapForms.addCheckbox(group.getContent(), "other",
-				"Something else");
+		forms.addCheckbox(group.getContent(), "other", "Something else");
 
-		BootstrapFormsHorizontal.addCheckbox(form, "stay_signed_in", "Sign in",
-				"Keep me signed in");
-		BootstrapFormsHorizontal.addCheckbox(form, "other", null,
-				"Something else");
+		group = forms.addGroup(form, "Multiple");
+		Div div = group.getContent().ac(HTML.div());
+		InlineCheckbox inlineCheckbox = forms.addInlineCheckbox(div,
+				"stay_signed_in", "Keep me signed in");
+		inlineCheckbox.getInput().setChecked(true);
+		forms.addInlineCheckbox(div, "other", "Something else");
 
-		BootstrapFormsHorizontal.addSubmit(form, "Continue");
+		forms.addSubmit(form, "Continue");
 	}
 
 }

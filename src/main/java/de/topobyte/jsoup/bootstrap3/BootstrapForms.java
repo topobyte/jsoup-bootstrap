@@ -1,4 +1,4 @@
-// Copyright 2018 Sebastian Kuerten
+// Copyright 2020 Sebastian Kuerten
 //
 // This file is part of jsoup-bootstrap.
 //
@@ -26,7 +26,9 @@ import de.topobyte.jsoup.HTML;
 import de.topobyte.jsoup.bootstrap3.forms.ButtonGroup;
 import de.topobyte.jsoup.bootstrap3.forms.Checkbox;
 import de.topobyte.jsoup.bootstrap3.forms.Group;
+import de.topobyte.jsoup.bootstrap3.forms.InlineCheckbox;
 import de.topobyte.jsoup.bootstrap3.forms.InputGroup;
+import de.topobyte.jsoup.bootstrap3.forms.RadioGroup;
 import de.topobyte.jsoup.bootstrap3.forms.SelectGroup;
 import de.topobyte.jsoup.components.Button;
 import de.topobyte.jsoup.components.Div;
@@ -40,14 +42,14 @@ import de.topobyte.jsoup.nodes.Element;
 public class BootstrapForms
 {
 
-	public static Group addGroup(Element form)
+	public Group addGroup(Element form)
 	{
 		Div group = form.ac(HTML.div("form-group"));
 
 		return new Group(group, null, group);
 	}
 
-	public static Group addGroup(Element form, String label)
+	public Group addGroup(Element form, String label)
 	{
 		Div group = form.ac(HTML.div("form-group"));
 
@@ -57,7 +59,7 @@ public class BootstrapForms
 		return new Group(group, eLabel, group);
 	}
 
-	public static InputGroup addInput(Element form, String name)
+	public InputGroup addInput(Element form, String name)
 	{
 		Group group = addGroup(form);
 
@@ -68,7 +70,7 @@ public class BootstrapForms
 		return new InputGroup(group, input);
 	}
 
-	public static InputGroup addInput(Element form, String name, String label)
+	public InputGroup addInput(Element form, String name, String label)
 	{
 		Group group = addGroup(form, label);
 
@@ -79,7 +81,7 @@ public class BootstrapForms
 		return new InputGroup(group, input);
 	}
 
-	public static ButtonGroup addSubmit(Element form, String buttonText)
+	public ButtonGroup addSubmit(Element form, String buttonText)
 	{
 		Group group = addGroup(form);
 
@@ -92,13 +94,13 @@ public class BootstrapForms
 		return new ButtonGroup(group, button);
 	}
 
-	public static SelectGroup addSelect(Element form, String name, String label,
+	public SelectGroup addSelect(Element form, String name, String label,
 			List<String> names, List<String> values)
 	{
 		return addSelect(form, name, label, names, values, -1);
 	}
 
-	public static SelectGroup addSelect(Element form, String name, String label,
+	public SelectGroup addSelect(Element form, String name, String label,
 			List<String> names, List<String> values, int selectedIndex)
 	{
 		Group group = addGroup(form, label);
@@ -124,24 +126,96 @@ public class BootstrapForms
 		return new SelectGroup(group, select, options, map);
 	}
 
-	public static Checkbox addCheckbox(Element form, String name)
+	public RadioGroup addRadio(Element form, String name, String label,
+			List<String> names, List<String> values, boolean inline)
 	{
-		return addCheckbox(form, name, null);
+		return addRadio(form, name, label, names, values, -1, null, inline);
 	}
 
-	public static Checkbox addCheckbox(Element form, String name, String text)
+	public RadioGroup addRadio(Element form, String name, String label,
+			List<String> names, List<String> values, String onChange,
+			boolean inline)
+	{
+		return addRadio(form, name, label, names, values, -1, onChange, inline);
+	}
+
+	public RadioGroup addRadio(Element form, String name, String label,
+			List<String> names, List<String> values, int selectedIndex,
+			String onChange, boolean inline)
+	{
+		Group group = addGroup(form, label);
+
+		Element content = group.getContent().ac(HTML.div());
+
+		List<Input> inputs = new ArrayList<>();
+		Map<String, Input> map = new HashMap<>();
+		for (int i = 0; i < names.size(); i++) {
+			Element c = content;
+			if (!inline) {
+				c = content.ac(HTML.div("radio"));
+			}
+			Label radioLabel = c.ac(HTML.label());
+			if (inline) {
+				radioLabel.addClass("radio-inline");
+			}
+			Input input = radioLabel.ac(HTML.input());
+			input.attr("type", "radio");
+			input.attr("name", name);
+			input.attr("id", String.format("%s%d", name, i + 1));
+			input.attr("value", values.get(i));
+			if (i == selectedIndex) {
+				input.setChecked(true);
+			}
+			if (onChange != null) {
+				input.attr("onchange",
+						String.format("%s(this.value)", onChange));
+			}
+			radioLabel.appendText(names.get(i));
+
+			inputs.add(input);
+			map.put(values.get(i), input);
+		}
+
+		return new RadioGroup(group, inputs, map);
+	}
+
+	public Checkbox addCheckbox(Element form, String name, String label)
 	{
 		Div checkbox = form.ac(HTML.div("checkbox"));
 
-		Label label = checkbox.ac(HTML.label());
-		Input input = label.ac(HTML.input());
+		Label boxLabel = checkbox.ac(HTML.label());
+		Input input = boxLabel.ac(HTML.input());
 		input.setName(name);
 		input.setType(Type.CHECKBOX);
-		if (text != null) {
-			label.appendText(text);
+		if (label != null) {
+			boxLabel.appendText(label);
 		}
 
-		return new Checkbox(checkbox, label, input);
+		return new Checkbox(checkbox, boxLabel, input);
+	}
+
+	public InlineCheckbox addInlineCheckbox(Element element, String name,
+			String label)
+	{
+		Label boxLabel = element.ac(HTML.label());
+		boxLabel.addClass("checkbox-inline");
+		Input input = boxLabel.ac(HTML.input());
+		input.setName(name);
+		input.setType(Type.CHECKBOX);
+		if (label != null) {
+			boxLabel.appendText(label);
+		}
+
+		return new InlineCheckbox(boxLabel, input);
+	}
+
+	/**
+	 * Add an arbitrary element with a label to the form.
+	 */
+	public void addElement(Element form, String label, Element element)
+	{
+		Group group = addGroup(form, label);
+		group.getContent().ac(element);
 	}
 
 }
