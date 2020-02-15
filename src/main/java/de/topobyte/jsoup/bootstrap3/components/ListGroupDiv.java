@@ -17,8 +17,11 @@
 
 package de.topobyte.jsoup.bootstrap3.components;
 
+import org.jsoup.nodes.Node;
+
 import de.topobyte.jsoup.bootstrap3.components.listgroup.ListGroupA;
 import de.topobyte.jsoup.bootstrap3.components.listgroup.ListGroupButton;
+import de.topobyte.jsoup.bootstrap3.components.listgroup.ListGroupItem;
 import de.topobyte.jsoup.components.Div;
 import de.topobyte.jsoup.nodes.Element;
 
@@ -34,6 +37,29 @@ public class ListGroupDiv extends Div
 	private void addClass(Element element)
 	{
 		element.addClass("list-group-item");
+	}
+
+	public ListGroupItem addItem()
+	{
+		ListGroupItem item = ac(new ListGroupItem());
+		addClass(item);
+		return item;
+	}
+
+	public ListGroupItem addTextItem(String text)
+	{
+		ListGroupItem item = addItem();
+		item.appendText(text);
+		addClass(item);
+		return item;
+	}
+
+	public ListGroupItem addItem(Node e)
+	{
+		ListGroupItem item = addItem();
+		item.ap(e);
+		addClass(item);
+		return item;
 	}
 
 	public ListGroupA addA(String href)

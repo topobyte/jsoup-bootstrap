@@ -25,6 +25,7 @@ import java.nio.file.Paths;
 
 import org.jsoup.nodes.Document;
 
+import de.topobyte.jsoup.HTML;
 import de.topobyte.jsoup.bootstrap3.components.Container;
 import de.topobyte.jsoup.bootstrap3.components.ContextualType;
 import de.topobyte.jsoup.bootstrap3.components.ListGroup;
@@ -64,6 +65,9 @@ public class ListGroupsGenerator extends BaseGenerator
 
 		c.ap(h1().inner("Disabled items"));
 		disabled(c);
+
+		c.ap(h1().inner("Various items"));
+		various(c);
 
 		c.ap(h1().inner("Contextual classes, default"));
 		basicContextual(c);
@@ -127,6 +131,14 @@ public class ListGroupsGenerator extends BaseGenerator
 		list.addA("#", "Morbi leo risus");
 		list.addA("#", "Porta ac consectetur ac");
 		list.addA("#", "Vestibulum at eros");
+	}
+
+	private void various(Container content)
+	{
+		ListGroupDiv list = content.ac(Bootstrap.listGroupDiv());
+		list.addTextItem("Cras justo odio");
+		list.addItem().appendText("Dapibus ac facilisis in");
+		list.addItem(HTML.b().appendText("Morbi leo risus"));
 	}
 
 	private void basicContextual(Container content)
