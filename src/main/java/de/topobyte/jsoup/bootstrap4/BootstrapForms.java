@@ -150,15 +150,13 @@ public class BootstrapForms
 		List<Input> inputs = new ArrayList<>();
 		Map<String, Input> map = new HashMap<>();
 		for (int i = 0; i < names.size(); i++) {
-			Element c = content;
-			if (!inline) {
-				c = content.ac(HTML.div("radio"));
-			}
-			Label radioLabel = c.ac(HTML.label());
+			Div div = content.ac(HTML.div("form-check"));
 			if (inline) {
-				radioLabel.addClass("radio-inline");
+				div.addClass("form-check-inline");
 			}
-			Input input = radioLabel.ac(HTML.input());
+
+			Input input = div.ac(HTML.input());
+			input.addClass("form-check-input");
 			input.attr("type", "radio");
 			input.attr("name", name);
 			input.attr("id", String.format("%s%d", name, i + 1));
@@ -170,6 +168,9 @@ public class BootstrapForms
 				input.attr("onchange",
 						String.format("%s(this.value)", onChange));
 			}
+
+			Label radioLabel = div.ac(HTML.label());
+			radioLabel.addClass("form-check-label");
 			radioLabel.appendText(names.get(i));
 
 			inputs.add(input);
@@ -181,13 +182,17 @@ public class BootstrapForms
 
 	public Checkbox addCheckbox(Element form, String name, String label)
 	{
-		Div checkbox = form.ac(HTML.div("checkbox"));
+		Div checkbox = form.ac(HTML.div("form-check"));
 
-		Label boxLabel = checkbox.ac(HTML.label());
-		Input input = boxLabel.ac(HTML.input());
+		Input input = checkbox.ac(HTML.input());
+		input.addClass("form-check-input");
 		input.setName(name);
 		input.setType(Type.CHECKBOX);
+
+		Label boxLabel = null;
 		if (label != null) {
+			boxLabel = checkbox.ac(HTML.label());
+			boxLabel.addClass("form-check-label");
 			boxLabel.appendText(label);
 		}
 
@@ -197,11 +202,15 @@ public class BootstrapForms
 	public InlineCheckbox addInlineCheckbox(Element element, String name,
 			String label)
 	{
-		Label boxLabel = element.ac(HTML.label());
-		boxLabel.addClass("checkbox-inline");
-		Input input = boxLabel.ac(HTML.input());
+		Div div = element.ac(HTML.div("form-check"));
+		div.addClass("form-check-inline");
+
+		Input input = div.ac(HTML.input());
+		input.addClass("form-check-input");
 		input.setName(name);
 		input.setType(Type.CHECKBOX);
+		Label boxLabel = div.ac(HTML.label());
+		boxLabel.addClass("form-check-label");
 		if (label != null) {
 			boxLabel.appendText(label);
 		}
