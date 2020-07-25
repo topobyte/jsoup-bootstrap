@@ -17,14 +17,33 @@
 
 package de.topobyte.jsoup.bootstrap4.components;
 
-import de.topobyte.jsoup.components.UnorderedList;
+import org.jsoup.nodes.Node;
 
-public class Breadcrumb extends UnorderedList
+import de.topobyte.jsoup.components.ListItem;
+import de.topobyte.jsoup.components.OrderedList;
+
+public class Breadcrumb extends OrderedList
 {
 
 	public Breadcrumb()
 	{
 		attr("class", "breadcrumb");
+	}
+
+	@Override
+	public ListItem addTextItem(String text)
+	{
+		ListItem item = super.addTextItem(text);
+		item.addClass("breadcrumb-item");
+		return item;
+	}
+
+	@Override
+	public ListItem addItem(Node e)
+	{
+		ListItem item = super.addItem(e);
+		item.addClass("breadcrumb-item");
+		return item;
 	}
 
 }
