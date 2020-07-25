@@ -18,7 +18,7 @@
 package de.topobyte.jsoup.bootstrap4;
 
 import de.topobyte.jsoup.HTML;
-import de.topobyte.jsoup.bootstrap3.forms.Group;
+import de.topobyte.jsoup.bootstrap4.forms.Group;
 import de.topobyte.jsoup.components.Div;
 import de.topobyte.jsoup.components.Label;
 import de.topobyte.jsoup.nodes.Element;

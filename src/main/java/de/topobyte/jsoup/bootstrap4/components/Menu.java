@@ -26,7 +26,7 @@ import static de.topobyte.jsoup.HTML.ul;
 import org.jsoup.nodes.Node;
 
 import de.topobyte.jsoup.ElementBuilder;
-import de.topobyte.jsoup.bootstrap3.Bootstrap;
+import de.topobyte.jsoup.bootstrap4.Bootstrap;
 import de.topobyte.jsoup.nodes.Element;
 
 public class Menu extends Element
