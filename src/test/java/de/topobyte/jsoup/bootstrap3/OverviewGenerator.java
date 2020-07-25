@@ -50,7 +50,7 @@ import de.topobyte.jsoup.nodes.Element;
 public class OverviewGenerator extends BaseGenerator
 {
 
-	private Path path = Test.DIR.resolve("index.html");
+	private Path path = TestBootstrap3.DIR.resolve("index.html");
 
 	@Override
 	public void generate() throws IOException

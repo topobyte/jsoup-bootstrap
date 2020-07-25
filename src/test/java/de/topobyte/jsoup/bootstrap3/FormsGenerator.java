@@ -42,7 +42,7 @@ import de.topobyte.jsoup.nodes.Element;
 public class FormsGenerator extends BaseGenerator
 {
 
-	private Path path = Test.DIR.resolve("forms.html");
+	private Path path = TestBootstrap3.DIR.resolve("forms.html");
 
 	@Override
 	public void generate() throws IOException

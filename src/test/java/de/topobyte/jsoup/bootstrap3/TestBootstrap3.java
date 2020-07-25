@@ -22,7 +22,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class Test
+public class TestBootstrap3
 {
 
 	public static final Path DIR = Paths.get("/tmp/jsoup-bootstrap3");

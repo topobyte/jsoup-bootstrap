@@ -36,7 +36,7 @@ import de.topobyte.jsoup.nodes.Element;
 public class ListGroupsGenerator extends BaseGenerator
 {
 
-	private Path path = Test.DIR.resolve("list-groups.html");
+	private Path path = TestBootstrap4.DIR.resolve("list-groups.html");
 
 	@Override
 	public void generate() throws IOException
