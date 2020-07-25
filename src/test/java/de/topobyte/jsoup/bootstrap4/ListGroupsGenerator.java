@@ -32,6 +32,7 @@ import de.topobyte.jsoup.bootstrap4.components.Container;
 import de.topobyte.jsoup.bootstrap4.components.ContextualType;
 import de.topobyte.jsoup.bootstrap4.components.ListGroup;
 import de.topobyte.jsoup.bootstrap4.components.ListGroupDiv;
+import de.topobyte.jsoup.bootstrap4.util.ListGroups;
 import de.topobyte.jsoup.components.ListItem;
 import de.topobyte.jsoup.nodes.Element;
 
@@ -111,11 +112,11 @@ public class ListGroupsGenerator extends BaseGenerator
 		ListItem item;
 		int i = 0;
 		item = list.addTextItem(getText(i++));
-		item.ac(Bootstrap.badge(Badge.Type.SECONDARY).appendText("14"));
+		ListGroups.setBadge(item, Badge.Type.SECONDARY, "14");
 		item = list.addTextItem(getText(i++));
-		item.ac(Bootstrap.badge(Badge.Type.SECONDARY).appendText("2"));
+		ListGroups.setBadge(item, Badge.Type.SECONDARY, "2");
 		item = list.addTextItem(getText(i++));
-		item.ac(Bootstrap.badge(Badge.Type.SECONDARY).appendText("1"));
+		ListGroups.setBadge(item, Badge.Type.SECONDARY, "1");
 	}
 
 	private void linked(Container content)
