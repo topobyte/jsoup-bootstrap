@@ -17,11 +17,10 @@
 
 package de.topobyte.jsoup.bootstrap4.components;
 
-import org.jsoup.nodes.Node;
-
 import de.topobyte.jsoup.HTML;
 import de.topobyte.jsoup.components.ListItem;
 import de.topobyte.jsoup.components.UnorderedList;
+import de.topobyte.jsoup.nodes.Element;
 
 public class NavTabs
 {
@@ -38,17 +37,14 @@ public class NavTabs
 		return list;
 	}
 
-	public ListItem addItem(Node e)
+	public ListItem addItem(String href, String text, boolean active)
 	{
-		return addItem(e, false);
-	}
-
-	public ListItem addItem(Node e, boolean active)
-	{
-		ListItem item = list.addItem(e);
-		item.attr("role", "presentation");
+		ListItem item = list.addItem();
+		item.addClass("nav-item");
+		Element a = item.ac(HTML.a(href).inner(text));
+		a.addClass("nav-link");
 		if (active) {
-			item.attr("class", "active");
+			a.addClass("active");
 		}
 		return item;
 	}

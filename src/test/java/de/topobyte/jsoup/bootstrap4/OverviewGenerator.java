@@ -35,7 +35,6 @@ import java.util.List;
 
 import org.jsoup.nodes.Document;
 
-import de.topobyte.jsoup.HTML;
 import de.topobyte.jsoup.bootstrap4.components.Alert;
 import de.topobyte.jsoup.bootstrap4.components.Badge;
 import de.topobyte.jsoup.bootstrap4.components.Breadcrumb;
@@ -130,8 +129,7 @@ public class OverviewGenerator extends BaseGenerator
 		div.ac(navTabs.getElement());
 
 		for (int i = 1; i <= 5; i++) {
-			Element link = HTML.a("#").appendText("item " + i);
-			navTabs.addItem(link, i == 2);
+			navTabs.addItem("#", "item " + i, i == 2);
 		}
 	}
 
