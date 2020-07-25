@@ -25,6 +25,7 @@ import java.nio.file.Path;
 import org.jsoup.nodes.Document;
 
 import de.topobyte.jsoup.HTML;
+import de.topobyte.jsoup.bootstrap4.components.Badge;
 import de.topobyte.jsoup.bootstrap4.components.Container;
 import de.topobyte.jsoup.bootstrap4.components.ContextualType;
 import de.topobyte.jsoup.bootstrap4.components.ListGroup;
@@ -95,11 +96,11 @@ public class ListGroupsGenerator extends BaseGenerator
 		ListGroup list = content.ac(Bootstrap.listGroup());
 		ListItem item;
 		item = list.addTextItem("Cras justo odio");
-		item.ac(Bootstrap.badge().appendText("14"));
+		item.ac(Bootstrap.badge(Badge.Type.SECONDARY).appendText("14"));
 		item = list.addTextItem("Dapibus ac facilisis in");
-		item.ac(Bootstrap.badge().appendText("2"));
+		item.ac(Bootstrap.badge(Badge.Type.SECONDARY).appendText("2"));
 		item = list.addTextItem("Morbi leo risus");
-		item.ac(Bootstrap.badge().appendText("1"));
+		item.ac(Bootstrap.badge(Badge.Type.SECONDARY).appendText("1"));
 	}
 
 	private void linked(Container content)

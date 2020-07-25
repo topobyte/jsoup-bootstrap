@@ -24,7 +24,6 @@ import de.topobyte.jsoup.bootstrap4.components.Button;
 import de.topobyte.jsoup.bootstrap4.components.Container;
 import de.topobyte.jsoup.bootstrap4.components.ContainerFluid;
 import de.topobyte.jsoup.bootstrap4.components.ContextualType;
-import de.topobyte.jsoup.bootstrap4.components.Label;
 import de.topobyte.jsoup.bootstrap4.components.ListGroup;
 import de.topobyte.jsoup.bootstrap4.components.ListGroupDiv;
 import de.topobyte.jsoup.components.Div;
@@ -57,19 +56,14 @@ public class Bootstrap
 		return new Div("row");
 	}
 
-	public static Label label(Label.Type type)
+	public static Badge badge(Badge.Type type)
 	{
-		return new Label(type);
+		return new Badge(type);
 	}
 
 	public static Alert alert(ContextualType type)
 	{
 		return new Alert(type);
-	}
-
-	public static Badge badge()
-	{
-		return new Badge();
 	}
 
 	public static ListGroup listGroup()

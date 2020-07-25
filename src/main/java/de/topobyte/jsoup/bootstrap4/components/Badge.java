@@ -17,14 +17,53 @@
 
 package de.topobyte.jsoup.bootstrap4.components;
 
+import java.util.EnumMap;
+import java.util.Map;
+
+import org.jsoup.nodes.Node;
+
 import de.topobyte.jsoup.components.Span;
 
 public class Badge extends Span
 {
 
-	public Badge()
+	public static enum Type {
+		PRIMARY,
+		SECONDARY,
+		SUCCESS,
+		INFO,
+		WARNING,
+		DANGER,
+		LIGHT,
+		DARK,
+	}
+
+	private static Map<Type, String> map = new EnumMap<>(Type.class);
+	static {
+		for (Type type : Type.values()) {
+			map.put(type, type.name().toLowerCase());
+		}
+	}
+
+	public Badge(Type type)
 	{
-		addClass("badge");
+		if (type == null) {
+			throw new IllegalArgumentException("null is not allowed");
+		}
+		String typename = map.get(type);
+		attr("class", "badge badge-" + typename);
+	}
+
+	public Badge(Type type, String text)
+	{
+		this(type);
+		appendText(text);
+	}
+
+	public Badge(Type type, Node child)
+	{
+		this(type);
+		appendChild(child);
 	}
 
 }

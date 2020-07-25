@@ -24,8 +24,8 @@ import static de.topobyte.jsoup.HTML.h1;
 import static de.topobyte.jsoup.HTML.i;
 import static de.topobyte.jsoup.HTML.p;
 import static de.topobyte.jsoup.bootstrap4.Bootstrap.alert;
+import static de.topobyte.jsoup.bootstrap4.Bootstrap.badge;
 import static de.topobyte.jsoup.bootstrap4.Bootstrap.button;
-import static de.topobyte.jsoup.bootstrap4.Bootstrap.label;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -37,11 +37,11 @@ import org.jsoup.nodes.Document;
 
 import de.topobyte.jsoup.HTML;
 import de.topobyte.jsoup.bootstrap4.components.Alert;
+import de.topobyte.jsoup.bootstrap4.components.Badge;
 import de.topobyte.jsoup.bootstrap4.components.Breadcrumb;
 import de.topobyte.jsoup.bootstrap4.components.CollapsiblePanel;
 import de.topobyte.jsoup.bootstrap4.components.Container;
 import de.topobyte.jsoup.bootstrap4.components.ContextualType;
-import de.topobyte.jsoup.bootstrap4.components.Label;
 import de.topobyte.jsoup.bootstrap4.components.NavTabs;
 import de.topobyte.jsoup.bootstrap4.components.Panel;
 import de.topobyte.jsoup.components.Div;
@@ -110,11 +110,11 @@ public class OverviewGenerator extends BaseGenerator
 		Element p = div.ac(p().inner("Another paragraph with some labels:"));
 		p.ap(br());
 
-		List<Label.Type> types = Arrays.asList(Label.Type.values());
-		Iterator<Label.Type> iterator = types.iterator();
+		List<Badge.Type> types = Arrays.asList(Badge.Type.values());
+		Iterator<Badge.Type> iterator = types.iterator();
 		while (iterator.hasNext()) {
-			Label.Type type = iterator.next();
-			Label label = label(type);
+			Badge.Type type = iterator.next();
+			Badge label = badge(type);
 			p.ap(label.inner(
 					"I'm a label of type " + type.toString().toLowerCase()));
 			if (iterator.hasNext()) {
