@@ -25,22 +25,7 @@ public class ContextualLists
 
 	public static void setContext(Element element, ContextualType type)
 	{
-		switch (type) {
-		case SUCCESS:
-			element.addClass("list-group-item-success");
-			break;
-		case WARNING:
-			element.addClass("list-group-item-warning");
-			break;
-		case INFO:
-			element.addClass("list-group-item-info");
-			break;
-		case DANGER:
-			element.addClass("list-group-item-danger");
-			break;
-		default:
-			break;
-		}
+		element.addClass("list-group-item-" + ContextualType.getName(type));
 	}
 
 }

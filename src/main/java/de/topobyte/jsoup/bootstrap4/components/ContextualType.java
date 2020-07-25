@@ -17,11 +17,31 @@
 
 package de.topobyte.jsoup.bootstrap4.components;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 public enum ContextualType {
 
+	PRIMARY,
+	SECONDARY,
 	SUCCESS,
 	INFO,
 	WARNING,
-	DANGER
+	DANGER,
+	LIGHT,
+	DARK;
+
+	private static Map<ContextualType, String> map = new EnumMap<>(
+			ContextualType.class);
+	static {
+		for (ContextualType type : values()) {
+			map.put(type, type.name().toLowerCase());
+		}
+	}
+
+	public static String getName(ContextualType type)
+	{
+		return map.get(type);
+	}
 
 }

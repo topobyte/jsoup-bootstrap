@@ -21,6 +21,8 @@ import static de.topobyte.jsoup.HTML.h1;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.jsoup.nodes.Document;
 
@@ -81,87 +83,99 @@ public class ListGroupsGenerator extends BaseGenerator
 		builder.write(path);
 	}
 
+	private List<String> texts = new ArrayList<>();
+	{
+		texts.add("Cras justo odio");
+		texts.add("Dapibus ac facilisis in");
+		texts.add("Morbi leo risus");
+		texts.add("Porta ac consectetur ac");
+		texts.add("Vestibulum at eros");
+	}
+
+	private String getText(int i)
+	{
+		return texts.get(i % texts.size());
+	}
+
 	private void basic(Container content)
 	{
 		ListGroup list = content.ac(Bootstrap.listGroup());
-		list.addTextItem("Cras justo odio");
-		list.addTextItem("Dapibus ac facilisis in");
-		list.addTextItem("Morbi leo risus");
-		list.addTextItem("Porta ac consectetur ac");
-		list.addTextItem("Vestibulum at eros");
+		for (int i = 0; i < 5; i++) {
+			list.addTextItem(getText(i));
+		}
 	}
 
 	private void badges(Container content)
 	{
 		ListGroup list = content.ac(Bootstrap.listGroup());
 		ListItem item;
-		item = list.addTextItem("Cras justo odio");
+		int i = 0;
+		item = list.addTextItem(getText(i++));
 		item.ac(Bootstrap.badge(Badge.Type.SECONDARY).appendText("14"));
-		item = list.addTextItem("Dapibus ac facilisis in");
+		item = list.addTextItem(getText(i++));
 		item.ac(Bootstrap.badge(Badge.Type.SECONDARY).appendText("2"));
-		item = list.addTextItem("Morbi leo risus");
+		item = list.addTextItem(getText(i++));
 		item.ac(Bootstrap.badge(Badge.Type.SECONDARY).appendText("1"));
 	}
 
 	private void linked(Container content)
 	{
 		ListGroupDiv list = content.ac(Bootstrap.listGroupDiv());
-		list.addA("#", "Cras justo odio").setActive();
-		list.addA("#", "Dapibus ac facilisis in");
-		list.addA("#", "Morbi leo risus");
-		list.addA("#", "Porta ac consectetur ac");
-		list.addA("#", "Vestibulum at eros");
+		int i = 0;
+		list.addA("#", getText(i++)).setActive();
+		list.addA("#", getText(i++));
+		list.addA("#", getText(i++));
+		list.addA("#", getText(i++));
+		list.addA("#", getText(i++));
 	}
 
 	private void buttons(Container content)
 	{
 		ListGroupDiv list = content.ac(Bootstrap.listGroupDiv());
-		list.addButton("Cras justo odio").setDisabled();
-		list.addButton("Dapibus ac facilisis in").setActive();
-		list.addButton("Morbi leo risus");
-		list.addButton("Porta ac consectetur ac");
-		list.addButton("Vestibulum at eros");
+		int i = 0;
+		list.addButton(getText(i++)).setDisabled();
+		list.addButton(getText(i++)).setActive();
+		list.addButton(getText(i++));
+		list.addButton(getText(i++));
+		list.addButton(getText(i++));
 	}
 
 	private void disabled(Container content)
 	{
 		ListGroupDiv list = content.ac(Bootstrap.listGroupDiv());
-		list.addA("#", "Cras justo odio").setDisabled();
-		list.addA("#", "Dapibus ac facilisis in");
-		list.addA("#", "Morbi leo risus");
-		list.addA("#", "Porta ac consectetur ac");
-		list.addA("#", "Vestibulum at eros");
+		int i = 0;
+		list.addA("#", getText(i++)).setDisabled();
+		list.addA("#", getText(i++));
+		list.addA("#", getText(i++));
+		list.addA("#", getText(i++));
+		list.addA("#", getText(i++));
 	}
 
 	private void various(Container content)
 	{
 		ListGroupDiv list = content.ac(Bootstrap.listGroupDiv());
-		list.addTextItem("Cras justo odio");
-		list.addItem().appendText("Dapibus ac facilisis in");
-		list.addItem(HTML.b().appendText("Morbi leo risus"));
+		int i = 0;
+		list.addTextItem(getText(i++));
+		list.addItem().appendText(getText(i++));
+		list.addItem(HTML.b().appendText(getText(i++)));
 	}
 
 	private void basicContextual(Container content)
 	{
 		ListGroup list = content.ac(Bootstrap.listGroup());
-		list.addTextItem("Cras justo odio").setContext(ContextualType.SUCCESS);
-		list.addTextItem("Dapibus ac facilisis in")
-				.setContext(ContextualType.INFO);
-		list.addTextItem("Porta ac consectetur ac")
-				.setContext(ContextualType.WARNING);
-		list.addTextItem("Vestibulum at eros")
-				.setContext(ContextualType.DANGER);
+		int i = 0;
+		for (ContextualType type : ContextualType.values()) {
+			list.addTextItem(getText(i++)).setContext(type);
+		}
 	}
 
 	private void linkedContextual(Container content)
 	{
 		ListGroupDiv list = content.ac(Bootstrap.listGroupDiv());
-		list.addA("#", "Cras justo odio").setContext(ContextualType.SUCCESS);
-		list.addA("#", "Dapibus ac facilisis in")
-				.setContext(ContextualType.INFO);
-		list.addA("#", "Porta ac consectetur ac")
-				.setContext(ContextualType.WARNING);
-		list.addA("#", "Vestibulum at eros").setContext(ContextualType.DANGER);
+		int i = 0;
+		for (ContextualType type : ContextualType.values()) {
+			list.addA("#", getText(i++)).setContext(type);
+		}
 	}
 
 }
