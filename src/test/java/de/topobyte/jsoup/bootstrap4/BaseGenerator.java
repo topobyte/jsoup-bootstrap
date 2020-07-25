@@ -15,9 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jsoup-bootstrap. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jsoup.bootstrap3;
-
-import static de.topobyte.jsoup.HTML.a;
+package de.topobyte.jsoup.bootstrap4;
 
 import java.io.IOException;
 
@@ -26,7 +24,8 @@ import org.apache.commons.io.IOUtils;
 import de.topobyte.jsoup.ElementUtil;
 import de.topobyte.jsoup.HTML;
 import de.topobyte.jsoup.HtmlBuilder;
-import de.topobyte.jsoup.bootstrap3.components.Menu;
+import de.topobyte.jsoup.bootstrap4.components.Menu;
+import de.topobyte.jsoup.bootstrap4.components.MenuBuilder;
 import de.topobyte.jsoup.nodes.Element;
 
 public class BaseGenerator
@@ -40,7 +39,7 @@ public class BaseGenerator
 
 		String header = IOUtils
 				.toString(Thread.currentThread().getContextClassLoader()
-						.getResourceAsStream("bootstrap3.headers.html"));
+						.getResourceAsStream("bootstrap4.headers.html"));
 		System.out.println(header);
 		ElementUtil.appendFragment(head, header);
 
@@ -53,16 +52,21 @@ public class BaseGenerator
 
 	protected static void menu(Element body)
 	{
-		Menu menu = new Menu();
+		MenuBuilder menuBuilder = new MenuBuilder();
+		Menu menu = menuBuilder.create();
 		body.ap(menu);
 
 		menu.addBrand(HTML.span().appendText("Awesome"));
 
-		menu.addMain(a("index.html").appendText("Overview"), false);
-		menu.addMain(a("forms.html").appendText("Forms"), false);
-		menu.addMain(a("list-groups.html").appendText("List-Groups"), false);
+		Element collapse = menu.addCollapsible();
+		Element main = menu.addSection(collapse);
+		Element right = menu.addSectionRight(collapse);
 
-		menu.addRight(a("#").appendText("About"), false);
+		menu.addLink(main, "index.html", "Overview", false);
+		menu.addLink(main, "forms.html", "Forms", false);
+		menu.addLink(main, "list-groups.html", "List-Groups", false);
+
+		menu.addLink(right, "#", "About", false);
 	}
 
 }

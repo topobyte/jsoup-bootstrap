@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jsoup-bootstrap. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jsoup.bootstrap3;
+package de.topobyte.jsoup.bootstrap4;
 
 import static de.topobyte.jsoup.HTML.h1;
 
@@ -25,10 +25,10 @@ import java.nio.file.Path;
 import org.jsoup.nodes.Document;
 
 import de.topobyte.jsoup.HTML;
-import de.topobyte.jsoup.bootstrap3.components.Container;
-import de.topobyte.jsoup.bootstrap3.components.ContextualType;
-import de.topobyte.jsoup.bootstrap3.components.ListGroup;
-import de.topobyte.jsoup.bootstrap3.components.ListGroupDiv;
+import de.topobyte.jsoup.bootstrap4.components.Container;
+import de.topobyte.jsoup.bootstrap4.components.ContextualType;
+import de.topobyte.jsoup.bootstrap4.components.ListGroup;
+import de.topobyte.jsoup.bootstrap4.components.ListGroupDiv;
 import de.topobyte.jsoup.components.ListItem;
 import de.topobyte.jsoup.nodes.Element;
 

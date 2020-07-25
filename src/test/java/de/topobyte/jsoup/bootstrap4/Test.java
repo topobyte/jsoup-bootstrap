@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jsoup-bootstrap. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jsoup.bootstrap3;
+package de.topobyte.jsoup.bootstrap4;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -25,7 +25,7 @@ import java.nio.file.Paths;
 public class Test
 {
 
-	public static final Path DIR = Paths.get("/tmp/jsoup-bootstrap3");
+	public static final Path DIR = Paths.get("/tmp/jsoup-bootstrap4");
 
 	public static void main(String[] args) throws IOException
 	{

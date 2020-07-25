@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jsoup-bootstrap. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jsoup.bootstrap3;
+package de.topobyte.jsoup.bootstrap4;
 
 import static de.topobyte.jsoup.HTML.h1;
 
@@ -27,13 +27,13 @@ import org.jsoup.nodes.Document;
 
 import de.topobyte.jsoup.FormUtil;
 import de.topobyte.jsoup.HTML;
-import de.topobyte.jsoup.bootstrap3.components.Container;
-import de.topobyte.jsoup.bootstrap3.forms.Checkbox;
-import de.topobyte.jsoup.bootstrap3.forms.Group;
-import de.topobyte.jsoup.bootstrap3.forms.InlineCheckbox;
-import de.topobyte.jsoup.bootstrap3.forms.InputGroup;
-import de.topobyte.jsoup.bootstrap3.forms.RadioGroup;
-import de.topobyte.jsoup.bootstrap3.forms.SelectGroup;
+import de.topobyte.jsoup.bootstrap4.components.Container;
+import de.topobyte.jsoup.bootstrap4.forms.Checkbox;
+import de.topobyte.jsoup.bootstrap4.forms.Group;
+import de.topobyte.jsoup.bootstrap4.forms.InlineCheckbox;
+import de.topobyte.jsoup.bootstrap4.forms.InputGroup;
+import de.topobyte.jsoup.bootstrap4.forms.RadioGroup;
+import de.topobyte.jsoup.bootstrap4.forms.SelectGroup;
 import de.topobyte.jsoup.components.Div;
 import de.topobyte.jsoup.components.Form;
 import de.topobyte.jsoup.components.Input.Type;
