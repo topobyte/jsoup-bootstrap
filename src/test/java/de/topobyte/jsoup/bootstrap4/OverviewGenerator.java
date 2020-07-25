@@ -39,11 +39,11 @@ import de.topobyte.jsoup.HTML;
 import de.topobyte.jsoup.bootstrap4.components.Alert;
 import de.topobyte.jsoup.bootstrap4.components.Badge;
 import de.topobyte.jsoup.bootstrap4.components.Breadcrumb;
-import de.topobyte.jsoup.bootstrap4.components.CollapsiblePanel;
+import de.topobyte.jsoup.bootstrap4.components.Card;
+import de.topobyte.jsoup.bootstrap4.components.CollapsibleCard;
 import de.topobyte.jsoup.bootstrap4.components.Container;
 import de.topobyte.jsoup.bootstrap4.components.ContextualType;
 import de.topobyte.jsoup.bootstrap4.components.NavTabs;
-import de.topobyte.jsoup.bootstrap4.components.Panel;
 import de.topobyte.jsoup.components.Div;
 import de.topobyte.jsoup.nodes.Element;
 
@@ -78,7 +78,7 @@ public class OverviewGenerator extends BaseGenerator
 		p.appendText(" text is possible as well");
 		System.out.println(p);
 
-		div.ap(button().inner("I'm a button"));
+		div.ac(button().inner("I'm a button")).attr("href", "#");
 
 		labels(div);
 
@@ -139,24 +139,27 @@ public class OverviewGenerator extends BaseGenerator
 	{
 		div.ac(p().inner("Panels:"));
 
-		Panel panel = div.ac(new Panel(false));
-		panel.getPanelHead().appendText("A simple panel");
-		panel.getPanelBody().appendText("Some content");
+		Card panel = div.ac(new Card(false));
+		panel.getCardHead().appendText("A simple panel");
+		panel.getCardBody().appendText("Some content");
+		panel.addClass("mb-2");
 
-		panel = div.ac(new Panel(true));
-		panel.getPanelHead().appendText("A simple panel");
-		panel.getPanelBody().appendText("Some content");
-		panel.getPanelFooter().appendText("A footer");
+		panel = div.ac(new Card(true));
+		panel.getCardHead().appendText("A simple panel");
+		panel.getCardBody().appendText("Some content");
+		panel.getCardFooter().appendText("A footer");
+		panel.addClass("mb-2");
 
-		CollapsiblePanel cpanel = div
-				.ac(new CollapsiblePanel(false, true, false));
+		CollapsibleCard cpanel = div.ac(new CollapsibleCard(false, true, true));
 		cpanel.getPanelHead().appendText("A collapsible panel");
 		cpanel.getPanelBody().appendText("Some content");
+		cpanel.addClass("mb-2");
 
-		cpanel = div.ac(new CollapsiblePanel(true, true, true));
+		cpanel = div.ac(new CollapsibleCard(true, true, false));
 		cpanel.getPanelHead().appendText("A collapsible panel");
 		cpanel.getPanelBody().appendText("Some content");
 		cpanel.getPanelFooter().appendText("A footer");
+		cpanel.addClass("mb-2");
 	}
 
 	private static void alerts(Div div)

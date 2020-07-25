@@ -20,37 +20,37 @@ package de.topobyte.jsoup.bootstrap4.components;
 import de.topobyte.jsoup.HTML;
 import de.topobyte.jsoup.components.Div;
 
-public class Panel extends Div
+public class Card extends Div
 {
 
-	private Div panelHead;
-	private Div panelBody;
-	private Div panelFooter;
+	private Div cardHead;
+	private Div cardBody;
+	private Div cardFooter;
 
-	public Panel(boolean withFooter)
+	public Card(boolean withFooter)
 	{
-		super("panel panel-default");
+		super("card");
 
-		panelHead = ac(HTML.div("panel-heading"));
-		panelBody = ac(HTML.div("panel-body"));
+		cardHead = ac(HTML.div("card-header"));
+		cardBody = ac(HTML.div("card-body"));
 		if (withFooter) {
-			panelFooter = ac(HTML.div("panel-footer"));
+			cardFooter = ac(HTML.div("card-footer"));
 		}
 	}
 
-	public Div getPanelHead()
+	public Div getCardHead()
 	{
-		return panelHead;
+		return cardHead;
 	}
 
-	public Div getPanelBody()
+	public Div getCardBody()
 	{
-		return panelBody;
+		return cardBody;
 	}
 
-	public Div getPanelFooter()
+	public Div getCardFooter()
 	{
-		return panelFooter;
+		return cardFooter;
 	}
 
 }

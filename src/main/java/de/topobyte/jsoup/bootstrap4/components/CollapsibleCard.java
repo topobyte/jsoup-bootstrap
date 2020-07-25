@@ -20,9 +20,10 @@ package de.topobyte.jsoup.bootstrap4.components;
 import java.util.UUID;
 
 import de.topobyte.jsoup.HTML;
+import de.topobyte.jsoup.components.A;
 import de.topobyte.jsoup.components.Div;
 
-public class CollapsiblePanel extends Div
+public class CollapsibleCard extends Div
 {
 
 	private Div panelHead;
@@ -31,47 +32,53 @@ public class CollapsiblePanel extends Div
 	private String collapseId;
 
 	/**
-	 * Create a new collapsible panel with a random UUID-based collapse id.
-	 * 
+	 * Create a new collapsible card with a random UUID-based collapse id.
+	 *
 	 * @param withFooter
 	 *            whether the footer div should be added.
 	 */
-	public CollapsiblePanel(boolean withFooter, boolean collapseWithHeaderClick,
+	public CollapsibleCard(boolean withFooter, boolean collapseWithHeaderClick,
 			boolean open)
 	{
-		this(withFooter, UUID.randomUUID().toString(), collapseWithHeaderClick,
-				open);
+		this(withFooter,
+				"collapse-" + UUID.randomUUID().toString().substring(0, 10),
+				collapseWithHeaderClick, open);
 	}
 
 	/**
-	 * Create a new collapsible panel with the specified collapse id.
-	 * 
+	 * Create a new collapsible card with the specified collapse id.
+	 *
 	 * @param withFooter
 	 *            whether the footer div should be added.
 	 */
-	public CollapsiblePanel(boolean withFooter, String collapseId,
+	public CollapsibleCard(boolean withFooter, String collapseId,
 			boolean collapseWithHeaderClick, boolean open)
 	{
-		super("panel panel-default");
+		super("card");
 
 		this.collapseId = collapseId;
 
-		panelHead = ac(HTML.div("panel-heading clickable"));
+		A a = ac(HTML.a("#" + collapseId));
+		if (!open) {
+			a.addClass("collapsed");
+		}
+		panelHead = a.ac(HTML.div("card-header"));
+		a.attr("data-toggle", "collapse");
+		a.attr("aria-expanded", Boolean.toString(open));
 
-		Div collapse = ac(HTML.div("panel-collapse collapse"));
+		Div collapse = ac(HTML.div("collapse"));
 		if (open) {
-			collapse.addClass("in");
+			collapse.addClass("show");
 		}
 		collapse.attr("id", collapseId);
-		panelBody = collapse.ac(HTML.div("panel-body"));
+		panelBody = collapse.ac(HTML.div("card-body"));
 
 		if (withFooter) {
-			panelFooter = collapse.ac(HTML.div("panel-footer"));
+			panelFooter = collapse.ac(HTML.div("card-footer"));
 		}
 
 		if (collapseWithHeaderClick) {
-			panelHead.attr("data-toggle", "collapse");
-			panelHead.attr("data-target", "#" + collapseId);
+
 		}
 	}
 
